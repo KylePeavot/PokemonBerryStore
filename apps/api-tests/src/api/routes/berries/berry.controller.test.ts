@@ -4,7 +4,11 @@ import * as fs from "fs";
 describe('Berry controller', () => {
     describe('GET /berries', () => {
         beforeEach(() => {
-            fs.unlink('apps/api/assets/localBerriesList.json', () => console.log('localBerriesList.json deleted before test'));
+            try {
+                fs.unlink('./apps/api/src/assets/localBerriesList.json', () => console.log('localBerriesList.json deleted before test'));
+            } catch (e) {
+                console.log('localBerriesList.json not found, continuing');
+            }
         })
 
         it('should return a list of berries', async () => {
