@@ -1,13 +1,13 @@
 {
-  "name": "api-e2e",
+  "name": "api-tests",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "implicitDependencies": ["api"],
   "targets": {
-    "e2e": {
+    "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
       "options": {
-        "jestConfig": "apps/api-e2e/jest.config.ts",
+        "jestConfig": "apps/api-tests/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -15,7 +15,9 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/api-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": [
+          "apps/api-tests/**/*.{js,ts}"
+        ]
       }
     }
   }
