@@ -1,7 +1,12 @@
 import request from 'supertest';
+import * as fs from "fs";
 
 describe('Berry controller', () => {
     describe('GET /berries', () => {
+        beforeEach(() => {
+            fs.unlink('apps/api/assets/localBerriesList.json', () => console.log('localBerriesList.json deleted before test'));
+        })
+
         it('should return a list of berries', async () => {
             //When
             //TODO move localhost:3000 into config
@@ -11,14 +16,15 @@ describe('Berry controller', () => {
             //Then
             expect(response.status).toBe(200);
             expect(response.body).toStrictEqual({
-                total: 64,
+                count: 64,
                 berries: expect.arrayContaining([
                     {
                         id: 53,
                         name: 'liechi',
+                        spriteUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/liechi-berry.png"
                     }
                 ]),
-            })
+            });
 
             /**
              *            description: 'Held in battle: When the holder has 1/4 its max HP remaining or less, it consumes this item to raise its Attack by one stage.',

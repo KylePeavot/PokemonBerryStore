@@ -1,5 +1,6 @@
 import fs from 'fs';
 import {PokeApiDriver} from "../../drivers/PokeApi.driver";
+import {NextFunction, Request, Response} from "express";
 
 interface BerriesList {
     count: number;
@@ -17,7 +18,7 @@ export class BerryController {
     }
 
 
-    getBerries = async (req, res, next) => {
+    getBerries = async (req: Request, res: Response, next: NextFunction) => {
         const berries = await this.getBerriesFromLocalFileOrElseApi();
 
         return res.status(200).json(berries).end();
@@ -25,25 +26,18 @@ export class BerryController {
 
     private async getBerriesFromLocalFileOrElseApi(): Promise<BerriesList> {
         try {
-            //Try to get a file called localBerriesList.json
-            //If it doesn't exist, then call the API
-            //If it does exist, then return the contents of the file
-
-            //TODO find a better place to store this
-            const localBerriesListFile = await fs.promises.readFile('localBerriesList.json');
-            const berriesListJson = JSON.parse(localBerriesListFile.toString());
-
-            return berriesListJson.map((berry) => ({
-                id: berry.id,
-                name: berry.name,
-            }))
+            //TODO use libs import instead of relative to root
+            const localBerriesListFile = await fs.promises.readFile('apps/api/assets/localBerriesList.json');
+            return JSON.parse(localBerriesListFile.toString());
         } catch (e) {
             //INFO: We assume here that this error has been thrown because the file doesn't exist
             console.warn({msg: 'No local berries list found, calling API instead', e});
 
             const berries = await this.buildBerriesListFromApi();
 
-            await fs.promises.writeFile('localBerriesList.json', JSON.stringify(berries.berries));
+            await fs.promises.writeFile('localBerriesList.json', JSON.stringify(berries));
+
+            return berries;
         }
     }
 

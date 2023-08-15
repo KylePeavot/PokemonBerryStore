@@ -1,0 +1,4 @@
+apps/api/src/assets
+/node_modules/
+/dist/
+/tmp/
