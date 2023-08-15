@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'berries',
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+        import('./berries/berries.module').then((m) => m.BerriesPageModule),
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'berries',
     pathMatch: 'full',
   },
 ];
