@@ -26,7 +26,7 @@ export class BerryController {
 
     private async getBerriesFromLocalFileOrElseApi(): Promise<BerriesList> {
         try {
-            //TODO use libs import instead of relative to root
+            //TODO move this file reading/writing to a util
             const localBerriesListFile = await fs.promises.readFile('./apps/api/src/assets/localBerriesList.json');
             return JSON.parse(localBerriesListFile.toString());
         } catch (e) {
@@ -38,7 +38,9 @@ export class BerryController {
             try {
                 await fs.promises.writeFile('./apps/api/src/assets/localBerriesList.json', JSON.stringify(berries));
             } catch (e) {
-                console.error({msg: 'Failed to write local berries list', e});
+                console.error({msg: 'Failed to write local berries list file', e});
+
+                throw e;
             }
 
             return berries;

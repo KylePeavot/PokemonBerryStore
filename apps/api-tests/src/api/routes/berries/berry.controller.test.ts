@@ -30,7 +30,7 @@ describe('Berry controller', () => {
                 ]),
             });
 
-            /**
+            /** TODO: Move properties into test as needed
              *            description: 'Held in battle: When the holder has 1/4 its max HP remaining or less, it consumes this item to raise its Attack by one stage.',
              *            flavours: [
              *                {

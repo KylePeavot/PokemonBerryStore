@@ -1,0 +1,7 @@
+{
+  "name": "berry-store",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
