@@ -3,20 +3,13 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-img class="title-image" src="../../../assets/title-banner.png" alt="Professor Oakazon" style="width: 200px"/>
+      <ion-img src="../../../assets/title-banner.png" alt="Professor Oakazon" style="width: 200px"/>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding" id="main-content">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <h1>Welcome berry-store!</h1>
-  </div>
+<ion-content [fullscreen]="true">
+  <!--  TODO: What does | async actually do? -->
+  <app-berry-list *ngIf="berries$ | async as berries" [berries]="berries"></app-berry-list>
 </ion-content>
 
 <ion-menu contentId="main-content">

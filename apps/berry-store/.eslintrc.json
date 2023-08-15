@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "pokemon-berry-store",
+            "prefix": "app",
             "style": "kebab-case"
           }
         ],
