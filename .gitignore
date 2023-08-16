@@ -2,3 +2,7 @@ apps/api/src/assets
 /node_modules/
 /dist/
 /tmp/
+
+.angular
+/apps/berry-store/ios/
+/apps/berry-store/android/
