@@ -9,6 +9,14 @@ interface BerriesList {
 		name: string;
 		spriteUrl: string | null;
 	}[];
+	firmness: 'very-soft' | 'soft' | 'hard' | 'very-hard' | 'super-hard';
+	flavorPotencyMap: {
+		spicy: number;
+		dry: number;
+		sweet: number;
+		bitter: number;
+		sour: number;
+	};
 }
 
 export class BerryController {

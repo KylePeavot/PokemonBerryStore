@@ -33,15 +33,15 @@ export const berryReducer = createReducer<BerryState>(
 			filteredBerries: action.berryList.berries,
 		};
 	}),
-		on(berriesFilterUpdated, (state, action): BerryState => {
-			return {
-				...state,
-				filteredBerries: filterBerries(
-					action.searchTerm,
-					state.unfilteredBerries
-				),
-			};
-		});
+	on(berriesFilterUpdated, (state, action): BerryState => {
+		return {
+			...state,
+			filteredBerries: filterBerries(
+				action.searchTerm,
+				state.unfilteredBerries
+			),
+		};
+	})
 );
 
 const filterBerries = (
