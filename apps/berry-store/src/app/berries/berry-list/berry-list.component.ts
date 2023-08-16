@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BerryList } from '../berry.service';
+import { Berry } from '../state/berry.reducer';
 
 @Component({
 	selector: 'app-berry-list',
@@ -7,5 +7,5 @@ import { BerryList } from '../berry.service';
 	styleUrls: ['./berry-list.component.scss'],
 })
 export class BerryListComponent {
-	@Input() berries: BerryList;
+	@Input() berries: Berry[];
 }

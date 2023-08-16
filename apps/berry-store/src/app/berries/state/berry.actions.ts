@@ -7,3 +7,8 @@ export const loadBerriesSuccess = createAction(
 	'[Berry API] Berries Loaded Success',
 	props<{ berryList: BerryList }>()
 );
+
+export const berriesFilterUpdated = createAction(
+	'[Berry Page] Berries Filter Updated',
+	props<{ searchTerm: string | null }>()
+);

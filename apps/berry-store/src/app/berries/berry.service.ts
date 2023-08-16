@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export interface BerryList {
-	count: number;
 	berries: {
 		id: number;
 		name: string;

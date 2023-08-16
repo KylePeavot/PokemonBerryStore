@@ -10,6 +10,7 @@ import { berryReducer } from './state/berry.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BerryEffects } from './state/berry.effects';
 import { BerryListComponent } from './berry-list/berry-list.component';
+import { BerryFiltersComponent } from './berry-filters/berry-filters.component';
 
 @NgModule({
 	imports: [
@@ -21,6 +22,6 @@ import { BerryListComponent } from './berry-list/berry-list.component';
 		EffectsModule.forFeature([BerryEffects]),
 		NgOptimizedImage,
 	],
-	declarations: [BerriesShellPage, BerryListComponent],
+	declarations: [BerriesShellPage, BerryListComponent, BerryFiltersComponent],
 })
 export class BerriesPageModule {}

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { BerryService } from '../berry.service';
 import { map, mergeMap } from 'rxjs';
-import * as BerryActions from './berry.actions';
+import { loadBerries, loadBerriesSuccess } from './berry.actions';
 
 @Injectable()
 export class BerryEffects {
@@ -13,15 +13,11 @@ export class BerryEffects {
 
 	loadBerries$ = createEffect(() => {
 		return this.actions$.pipe(
-			ofType(BerryActions.loadBerries),
+			ofType(loadBerries),
 			mergeMap(() =>
 				this.berryService
 					.getAllBerries()
-					.pipe(
-						map((berryList) =>
-							BerryActions.loadBerriesSuccess({ berryList })
-						)
-					)
+					.pipe(map((berryList) => loadBerriesSuccess({ berryList })))
 			)
 		);
 	});

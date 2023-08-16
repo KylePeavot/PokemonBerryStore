@@ -3,8 +3,7 @@ import { State } from '../state';
 import { Store } from '@ngrx/store';
 import * as BerryActions from '../state/berry.actions';
 import { Observable } from 'rxjs';
-import { BerryList } from '../berry.service';
-import { getBerries } from '../state/berry.reducer';
+import { Berry, getBerries } from '../state/berry.reducer';
 
 @Component({
 	selector: 'app-berries-shell',
@@ -12,7 +11,7 @@ import { getBerries } from '../state/berry.reducer';
 	styleUrls: ['berries-shell.page.scss'],
 })
 export class BerriesShellPage implements OnInit {
-	berries$: Observable<BerryList>;
+	berries$: Observable<Berry[]>;
 
 	constructor(private store: Store<State>) {}
 
