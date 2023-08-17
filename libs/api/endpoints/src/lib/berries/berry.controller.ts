@@ -36,7 +36,7 @@ export class BerryController {
 		try {
 			//TODO move this file reading/writing to a util
 			const localBerriesListFile = await fs.promises.readFile(
-				'../localBerriesList.json'
+				'./libs/api/endpoints/src/lib/berries/localBerriesList.json'
 			);
 			return JSON.parse(localBerriesListFile.toString());
 		} catch (e) {
@@ -51,7 +51,7 @@ export class BerryController {
 			try {
 				//TODO is this actually happening?
 				await fs.promises.writeFile(
-					'../localBerriesList.json',
+					'./libs/api/endpoints/src/lib/berries/localBerriesList.json',
 					JSON.stringify(berries)
 				);
 			} catch (e) {

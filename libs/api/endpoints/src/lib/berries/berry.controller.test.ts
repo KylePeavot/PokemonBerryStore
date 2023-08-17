@@ -5,8 +5,10 @@ describe('Berry controller', () => {
 	describe('GET /berries', () => {
 		beforeEach(() => {
 			try {
-				fs.unlink('../localBerriesList.json', () =>
-					console.log('localBerriesList.json deleted before test')
+				fs.unlink(
+					'./libs/api/endpoints/src/lib/berries/localBerriesList.json',
+					() =>
+						console.log('localBerriesList.json deleted before test')
 				);
 			} catch (e) {
 				console.log('localBerriesList.json not found, continuing');

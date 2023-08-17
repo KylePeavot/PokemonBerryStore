@@ -6,3 +6,4 @@ apps/api/src/assets
 .angular
 /apps/berry-store/ios/
 /apps/berry-store/android/
+/libs/api/endpoints/src/lib/berries/localBerriesList.json
