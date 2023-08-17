@@ -1,5 +1,5 @@
-import express from "express";
-import berryRouter from './berries/berry.routes';
+import express from 'express';
+import { berryRouter } from '@pokemon-berry-store/api/endpoints';
 
 const router = express.Router();
 
