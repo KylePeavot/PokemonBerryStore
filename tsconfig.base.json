@@ -23,6 +23,9 @@
 			],
 			"@pokemon-berry-store/api/endpoints": [
 				"libs/api/endpoints/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/berries/components": [
+				"libs/mobile/berries/components/src/index.ts"
 			]
 		}
 	},

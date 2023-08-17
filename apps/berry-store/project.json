@@ -2,7 +2,7 @@
   "name": "berry-store",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "pokemon-berry-store",
+  "prefix": "app",
   "sourceRoot": "apps/berry-store/src",
   "tags": [],
   "targets": {
