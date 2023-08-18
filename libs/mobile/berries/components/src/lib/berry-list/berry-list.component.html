@@ -1,0 +1,6 @@
+<ion-list>
+    <ion-item *ngFor="let berry of berries">
+        <ion-label>#{{berry.id}}: {{berry.name}}</ion-label>
+        <ion-img *ngIf="berry.spriteUrl" src="{{berry.spriteUrl}}" alt="the berry"/>
+    </ion-item>
+</ion-list>

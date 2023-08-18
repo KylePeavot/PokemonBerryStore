@@ -51,6 +51,16 @@
         }
       }
     },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run api:build:development",
+          "nx run api:serve:development"
+        ],
+        "parallel": false
+      }
+    },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],

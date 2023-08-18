@@ -1,26 +1,48 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {}
-  },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": [
+			"es2020",
+			"dom"
+		],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@pokemon-berry-store/api/drivers": [
+				"libs/api/drivers/src/index.ts"
+			],
+			"@pokemon-berry-store/api/endpoints": [
+				"libs/api/endpoints/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/berries/components": [
+				"libs/mobile/berries/components/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/berries/services": [
+				"libs/mobile/berries/services/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/berries/state": [
+				"libs/mobile/berries/state/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/util": [
+				"libs/mobile/util/src/index.ts"
+			],
+			"@pokemon-berry-store/shared/request-types": [
+				"libs/shared/request-types/src/index.ts"
+			]
+		}
+	},
+	"exclude": [
+		"node_modules",
+		"tmp"
+	]
 }
