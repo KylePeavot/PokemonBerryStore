@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Berry } from '../state/berry.reducer';
+import { Berry } from '@pokemon-berry-store/mobile/berries/state';
 
 @Component({
 	selector: 'app-berry-list',

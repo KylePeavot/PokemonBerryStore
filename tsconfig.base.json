@@ -26,6 +26,18 @@
 			],
 			"@pokemon-berry-store/mobile/berries/components": [
 				"libs/mobile/berries/components/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/berries/services": [
+				"libs/mobile/berries/services/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/berries/state": [
+				"libs/mobile/berries/state/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/util": [
+				"libs/mobile/util/src/index.ts"
+			],
+			"@pokemon-berry-store/shared/request-types": [
+				"libs/shared/request-types/src/index.ts"
 			]
 		}
 	},

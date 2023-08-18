@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { InputCustomEvent } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { State } from '../state';
-import { berriesFilterUpdated } from '../state/berry.actions';
-import { asInputCustomEventOrThrow } from '../../utils/ionic-type-checks';
+import {
+	BerryActions,
+	BerryState,
+} from '@pokemon-berry-store/mobile/berries/state';
+import { asInputCustomEventOrThrow } from '@pokemon-berry-store/mobile/util';
 
 @Component({
 	selector: 'app-berry-filters',
@@ -11,13 +13,16 @@ import { asInputCustomEventOrThrow } from '../../utils/ionic-type-checks';
 	styleUrls: ['./berry-filters.component.scss'],
 })
 export class BerryFiltersComponent {
-	constructor(private store: Store<State>) {}
+	//INFO: Angular needs this to
+	protected readonly asInputCustomEventOrThrow = asInputCustomEventOrThrow;
+
+	constructor(private store: Store<BerryState>) {}
 
 	handleSearchTermChanged(event: InputCustomEvent) {
 		this.store.dispatch(
-			berriesFilterUpdated({ searchTerm: event.detail.value ?? null })
+			BerryActions.berriesFilterUpdated({
+				searchTerm: event.detail.value ?? null,
+			})
 		);
 	}
-
-	protected readonly asInputCustomEventOrThrow = asInputCustomEventOrThrow;
 }

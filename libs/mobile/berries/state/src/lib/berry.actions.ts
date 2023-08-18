@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { BerryList } from '../berry.service';
+import { BerryList } from '@pokemon-berry-store/mobile/berries/services';
 
 export const loadBerries = createAction('[Berry Page] Load Berries');
 

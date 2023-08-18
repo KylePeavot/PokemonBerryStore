@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { State } from '../state';
 import { Store } from '@ngrx/store';
-import * as BerryActions from '../state/berry.actions';
+import {
+	Berry,
+	BerryActions,
+	BerryState,
+	getBerries,
+} from '@pokemon-berry-store/mobile/berries/state';
 import { Observable } from 'rxjs';
-import { Berry, getBerries } from '../state/berry.reducer';
 
 @Component({
 	selector: 'app-berries-shell',
@@ -13,7 +16,7 @@ import { Berry, getBerries } from '../state/berry.reducer';
 export class BerriesShellPage implements OnInit {
 	berries$: Observable<Berry[]>;
 
-	constructor(private store: Store<State>) {}
+	constructor(private store: Store<BerryState>) {}
 
 	ngOnInit() {
 		this.berries$ = this.store.select(getBerries);

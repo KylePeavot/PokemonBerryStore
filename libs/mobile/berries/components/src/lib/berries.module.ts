@@ -5,14 +5,16 @@ import { FormsModule } from '@angular/forms';
 
 import { BerriesPageRoutingModule } from './berries-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { berryReducer } from './state/berry.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { BerryEffects } from './state/berry.effects';
 import {
 	BerriesShellPage,
 	BerryFiltersComponent,
 	BerryListComponent,
 } from '@pokemon-berry-store/mobile/berries/components';
+import {
+	BerryEffects,
+	berryReducer,
+} from '@pokemon-berry-store/mobile/berries/state';
 
 @NgModule({
 	imports: [

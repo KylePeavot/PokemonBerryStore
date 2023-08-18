@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BerriesShellPage } from './berries-shell/berries-shell.page';
+import { BerriesShellPage } from '@pokemon-berry-store/mobile/berries/components';
 
 const routes: Routes = [
 	{

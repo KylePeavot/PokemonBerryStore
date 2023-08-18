@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { BerryService } from '../berry.service';
 import { map, mergeMap } from 'rxjs';
 import { loadBerries, loadBerriesSuccess } from './berry.actions';
+import { BerryService } from '@pokemon-berry-store/mobile/berries/services';
 
 @Injectable()
 export class BerryEffects {
