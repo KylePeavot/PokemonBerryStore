@@ -1,1 +1,1 @@
-export * from './lib';
+export { BerryList, BerryService } from './lib/berry.service';

@@ -1,12 +1,11 @@
-import {createFeatureSelector, createReducer, createSelector, on,} from '@ngrx/store';
-import {berriesFilterUpdated, loadBerriesSuccess} from './berry.actions';
-
-//TODO move to service
-export interface Berry {
-	id: number;
-	name: string;
-	spriteUrl: string | null;
-}
+import {
+	createFeatureSelector,
+	createReducer,
+	createSelector,
+	on,
+} from '@ngrx/store';
+import { berriesFilterUpdated, loadBerriesSuccess } from './berry.actions';
+import { Berry } from '@pokemon-berry-store/mobile/berries/domain';
 
 export interface BerryState {
 	unfilteredBerries: Berry[];

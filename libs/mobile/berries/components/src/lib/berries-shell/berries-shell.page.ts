@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
-	Berry,
 	BerryActions,
 	BerryState,
 	getBerries,
 } from '@pokemon-berry-store/mobile/berries/state';
 import { Observable } from 'rxjs';
+import { Berry } from '@pokemon-berry-store/mobile/berries/domain';
 
 @Component({
 	selector: 'app-berries-shell',

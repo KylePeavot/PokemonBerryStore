@@ -1,11 +1,5 @@
 import { InputCustomEvent } from '@ionic/angular';
 
-export const asInputCustomEventOrThrow = (event: Event): InputCustomEvent => {
-	if (event instanceof InputEvent) {
-		throw new Error(
-			`Expected InputEvent, received ${event.constructor.name}`
-		);
-	}
-
+export const asInputCustomEvent = (event: Event): InputCustomEvent => {
 	return event as InputCustomEvent;
 };

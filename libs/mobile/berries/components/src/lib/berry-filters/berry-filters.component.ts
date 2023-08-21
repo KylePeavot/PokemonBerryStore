@@ -5,7 +5,7 @@ import {
 	BerryActions,
 	BerryState,
 } from '@pokemon-berry-store/mobile/berries/state';
-import { asInputCustomEventOrThrow } from '@pokemon-berry-store/mobile/util';
+import { asInputCustomEvent } from '@pokemon-berry-store/mobile/util';
 
 @Component({
 	selector: 'app-berry-filters',
@@ -14,7 +14,8 @@ import { asInputCustomEventOrThrow } from '@pokemon-berry-store/mobile/util';
 })
 export class BerryFiltersComponent {
 	//INFO: Angular needs this to
-	protected readonly asInputCustomEventOrThrow = asInputCustomEventOrThrow;
+	protected readonly asInputCustomEventOrThrow = asInputCustomEvent;
+	isFilterModalOpen = false;
 
 	constructor(private store: Store<BerryState>) {}
 
@@ -24,5 +25,9 @@ export class BerryFiltersComponent {
 				searchTerm: event.detail.value ?? null,
 			})
 		);
+	}
+
+	toggleModal() {
+		this.isFilterModalOpen = !this.isFilterModalOpen;
 	}
 }
