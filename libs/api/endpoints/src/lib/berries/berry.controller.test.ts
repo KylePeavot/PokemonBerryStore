@@ -1,18 +1,20 @@
 import request from 'supertest';
-import fs from 'fs';
+import { GetBerriesListResponse } from '@pokemon-berry-store/shared/request-types';
 
 describe('Berry controller', () => {
 	describe('GET /berries', () => {
 		beforeEach(() => {
-			try {
-				fs.unlink(
-					'./libs/api/endpoints/src/lib/berries/localBerriesList.json',
-					() =>
-						console.log('localBerriesList.json deleted before test')
-				);
-			} catch (e) {
-				console.log('localBerriesList.json not found, continuing');
-			}
+			// const localBerriesListFileLocation = 'localBerriesList.json';
+			// try {
+			//
+			//TODO this absolutely does not work right now. Leaving until
+			// application built and run on each test run because testing by
+			// manually rebuilding each code change is slow
+			// 	fs.unlinkSync(localBerriesListFileLocation);
+			//
+			// } catch (e) {
+			// 	console.log('localBerriesList.json not found, continuing');
+			// }
 		});
 
 		it('should return a list of berries', async () => {
@@ -23,7 +25,7 @@ describe('Berry controller', () => {
 
 			//Then
 			expect(response.status).toBe(200);
-			expect(response.body).toStrictEqual({
+			expect(response.body).toStrictEqual<GetBerriesListResponse>({
 				count: 64,
 				berries: expect.arrayContaining([
 					{
@@ -31,29 +33,17 @@ describe('Berry controller', () => {
 						name: 'liechi',
 						spriteUrl:
 							'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/liechi-berry.png',
+						firmness: 'very-hard',
+						flavorPotencyMap: {
+							spicy: 30,
+							dry: 10,
+							sweet: 30,
+							bitter: 0,
+							sour: 0,
+						},
 					},
 				]),
 			});
-
-			/** TODO: Move properties into test as needed
-			 *            description: 'Held in battle: When the holder has 1/4 its max HP remaining or less, it consumes this item to raise its Attack by one stage.',
-			 *            flavours: [
-			 *                {
-			 *                    name: 'spicy',
-			 *                    potency: 30
-			 *                },
-			 *                {
-			 *                    name: 'sweet',
-			 *                    potency: 30
-			 *                },
-			 *                {
-			 *                    name: 'dry',
-			 *                    potency: 10
-			 *                }
-			 *            ],
-			 *            firmness: 'very-hard',
-			 *            spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/liechi-berry.png'
-			 */
 		});
 	});
 });

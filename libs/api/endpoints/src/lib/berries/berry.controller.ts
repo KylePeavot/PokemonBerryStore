@@ -1,23 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import { PokeApiDriver } from '@pokemon-berry-store/api/drivers';
 import * as fs from 'fs';
-
-interface BerriesList {
-	count: number;
-	berries: {
-		id: number;
-		name: string;
-		spriteUrl: string | null;
-	}[];
-	// firmness: 'very-soft' | 'soft' | 'hard' | 'very-hard' | 'super-hard';
-	// flavorPotencyMap: {
-	// 	spicy: number;
-	// 	dry: number;
-	// 	sweet: number;
-	// 	bitter: number;
-	// 	sour: number;
-	// };
-}
+import {
+	BerryFirmness,
+	GetBerriesListResponse,
+} from '@pokemon-berry-store/shared/request-types';
 
 export class BerryController {
 	private pokeApiDriver: PokeApiDriver;
@@ -32,11 +19,13 @@ export class BerryController {
 		return res.status(200).json(berries).end();
 	};
 
-	private async getBerriesFromLocalFileOrElseApi(): Promise<BerriesList> {
+	private async getBerriesFromLocalFileOrElseApi(): Promise<GetBerriesListResponse> {
+		const localBerriesListFileLocation = 'localBerriesList.json';
+
 		try {
 			//TODO move this file reading/writing to a util
-			const localBerriesListFile = await fs.promises.readFile(
-				'./libs/api/endpoints/src/lib/berries/localBerriesList.json'
+			const localBerriesListFile = fs.readFileSync(
+				localBerriesListFileLocation
 			);
 			return JSON.parse(localBerriesListFile.toString());
 		} catch (e) {
@@ -49,9 +38,8 @@ export class BerryController {
 			const berries = await this.buildBerriesListFromApi();
 
 			try {
-				//TODO is this actually happening?
-				await fs.promises.writeFile(
-					'./libs/api/endpoints/src/lib/berries/localBerriesList.json',
+				fs.writeFileSync(
+					localBerriesListFileLocation,
 					JSON.stringify(berries)
 				);
 			} catch (e) {
@@ -68,7 +56,7 @@ export class BerryController {
 	}
 
 	//TODO move this to a service or the driver itself
-	private async buildBerriesListFromApi(): Promise<BerriesList> {
+	private async buildBerriesListFromApi(): Promise<GetBerriesListResponse> {
 		const paginatedBerries = await this.pokeApiDriver.getBerries();
 
 		const berries = await Promise.all(
@@ -80,10 +68,39 @@ export class BerryController {
 					berryData.item.name
 				);
 
+				const spicyPotency: number =
+					berryData.flavors.find(
+						(flavor) => flavor.flavor.name === 'spicy'
+					)?.potency ?? 0;
+				const dryPotency: number =
+					berryData.flavors.find(
+						(flavor) => flavor.flavor.name === 'dry'
+					)?.potency ?? 0;
+				const sweetPotency: number =
+					berryData.flavors.find(
+						(flavor) => flavor.flavor.name === 'sweet'
+					)?.potency ?? 0;
+				const bitterPotency: number =
+					berryData.flavors.find(
+						(flavor) => flavor.flavor.name === 'bitter'
+					)?.potency ?? 0;
+				const sourPotency: number =
+					berryData.flavors.find(
+						(flavor) => flavor.flavor.name === 'sour'
+					)?.potency ?? 0;
+
 				return {
 					id: berryData.id,
 					name: berryData.name,
 					spriteUrl: itemData.sprites.default,
+					firmness: berryData.firmness.name as BerryFirmness,
+					flavorPotencyMap: {
+						spicy: spicyPotency,
+						dry: dryPotency,
+						sweet: sweetPotency,
+						bitter: bitterPotency,
+						sour: sourPotency,
+					},
 				};
 			})
 		);
