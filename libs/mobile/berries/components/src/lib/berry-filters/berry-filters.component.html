@@ -1,2 +1,111 @@
-<ion-input type="text" (ionInput)="handleSearchTermChanged(asInputCustomEventOrThrow($event))"
-           placeholder="Search berries..."/>
+<ion-toolbar class="ion-padding-top">
+    <ion-searchbar slot="start" type="text" (ionInput)="handleSearchTermChanged(asInputCustomEvent($event))"
+                   placeholder="Search berries..."/>
+    <ion-buttons slot="secondary">
+        <ion-button (click)="handleOpenModal()" fill="clear">
+            <ion-icon name="filter-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
+
+<ion-modal [isOpen]="isFilterModalOpen">
+    <ng-template>
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-button [strong]="true" (click)="handleCancel()">Cancel</ion-button>
+                </ion-buttons>
+                <ion-title>Filter</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button [strong]="true" (click)="handleConfirm()">Confirm</ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list lines="none">
+                <ion-list-header>
+                    <ion-label>Firmness</ion-label>
+                </ion-list-header>
+                <ion-item>
+                    <ion-checkbox
+                            justify="start"
+                            labelPlacement="end"
+                            [(ngModel)]="newFilters.selectedFirmnessTypes.isVerySoftSelected"
+                    >
+                        Very soft
+                    </ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox
+                            justify="start"
+                            labelPlacement="end"
+                            [(ngModel)]="newFilters.selectedFirmnessTypes.isSoftSelected"
+                    >
+                        Soft
+                    </ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox
+                            justify="start"
+                            labelPlacement="end"
+                            [(ngModel)]="newFilters.selectedFirmnessTypes.isHardSelected"
+                    >
+                        Hard
+                    </ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox
+                            justify="start"
+                            labelPlacement="end"
+                            [(ngModel)]="newFilters.selectedFirmnessTypes.isVeryHardSelected"
+                    >
+                        Very hard
+                    </ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-checkbox
+                            justify="start"
+                            labelPlacement="end"
+                            [(ngModel)]="newFilters.selectedFirmnessTypes.isSuperHardSelected"
+                    >
+                        Super hard
+                    </ion-checkbox>
+                </ion-item>
+            </ion-list>
+
+            <ion-list lines="none">
+                <ion-list-header>Flavour</ion-list-header>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.spicy" label="Spicy"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.dry" label="Dry"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.sweet" label="Sweet"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.bitter" label="Bitter"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.sour" label="Sour"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ng-template>
+</ion-modal>

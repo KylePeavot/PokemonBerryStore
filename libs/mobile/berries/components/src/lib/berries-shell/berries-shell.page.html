@@ -8,7 +8,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" id="berry-content">
-  <app-berry-filters></app-berry-filters>
+  <app-berry-filters *ngIf="currentlyActiveFilters$ | async as currentlyActiveFilters"
+                     [currentlyActiveFilters]="currentlyActiveFilters"></app-berry-filters>
+
   <!--  TODO: What does | async actually do? -->
   <app-berry-list *ngIf="berries$ | async as berries" [berries]="berries"></app-berry-list>
 </ion-content>

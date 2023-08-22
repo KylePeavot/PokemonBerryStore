@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InputCustomEvent } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import {
 	BerryActions,
+	BerryFilters,
 	BerryState,
 } from '@pokemon-berry-store/mobile/berries/state';
-import { asInputCustomEventOrThrow } from '@pokemon-berry-store/mobile/util';
+import { asInputCustomEvent } from '@pokemon-berry-store/mobile/util';
 
 @Component({
 	selector: 'app-berry-filters',
@@ -13,16 +14,48 @@ import { asInputCustomEventOrThrow } from '@pokemon-berry-store/mobile/util';
 	styleUrls: ['./berry-filters.component.scss'],
 })
 export class BerryFiltersComponent {
-	//INFO: Angular needs this to
-	protected readonly asInputCustomEventOrThrow = asInputCustomEventOrThrow;
+	protected readonly asInputCustomEvent = asInputCustomEvent;
+
+	isFilterModalOpen = false;
+
+	@Input()
+	currentlyActiveFilters: BerryFilters;
+	newFilters: Omit<BerryFilters, 'searchTerm'>;
 
 	constructor(private store: Store<BerryState>) {}
 
 	handleSearchTermChanged(event: InputCustomEvent) {
 		this.store.dispatch(
-			BerryActions.berriesFilterUpdated({
-				searchTerm: event.detail.value ?? null,
+			BerryActions.berriesSearchTermUpdated({
+				searchTerm: event.detail.value ?? '',
 			})
 		);
+	}
+
+	handleOpenModal() {
+		this.newFilters = {
+			selectedFirmnessTypes: {
+				...this.currentlyActiveFilters.selectedFirmnessTypes,
+			},
+			flavorPotencyRanges: {
+				...this.currentlyActiveFilters.flavorPotencyRanges,
+			},
+		};
+
+		this.isFilterModalOpen = true;
+	}
+
+	handleCancel() {
+		this.isFilterModalOpen = false;
+	}
+
+	handleConfirm() {
+		this.store.dispatch(
+			BerryActions.berriesFilterUpdated({
+				selectedFirmnessTypes: this.newFilters.selectedFirmnessTypes,
+				flavorPotencyRanges: this.newFilters.flavorPotencyRanges,
+			})
+		);
+		this.isFilterModalOpen = false;
 	}
 }
