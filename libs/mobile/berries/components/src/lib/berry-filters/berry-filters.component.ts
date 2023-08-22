@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InputCustomEvent } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import {
 	BerryActions,
+	BerryFilters,
 	BerryState,
 } from '@pokemon-berry-store/mobile/berries/state';
 import { asInputCustomEvent } from '@pokemon-berry-store/mobile/util';
@@ -13,15 +14,17 @@ import { asInputCustomEvent } from '@pokemon-berry-store/mobile/util';
 	styleUrls: ['./berry-filters.component.scss'],
 })
 export class BerryFiltersComponent {
-	//INFO: Angular needs this to
-	protected readonly asInputCustomEventOrThrow = asInputCustomEvent;
+	protected readonly asInputCustomEvent = asInputCustomEvent;
+
 	isFilterModalOpen = false;
 
+	@Input()
+	currentlyActiveFilters: BerryFilters;
 	constructor(private store: Store<BerryState>) {}
 
 	handleSearchTermChanged(event: InputCustomEvent) {
 		this.store.dispatch(
-			BerryActions.berriesFilterUpdated({
+			BerryActions.berriesSearchTermUpdated({
 				searchTerm: event.detail.value ?? null,
 			})
 		);

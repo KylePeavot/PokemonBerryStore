@@ -1,5 +1,5 @@
 <ion-toolbar class="ion-padding-top">
-    <ion-searchbar slot="start" type="text" (ionInput)="handleSearchTermChanged(asInputCustomEventOrThrow($event))"
+    <ion-searchbar slot="start" type="text" (ionInput)="handleSearchTermChanged(asInputCustomEvent($event))"
                    placeholder="Search berries..."/>
     <ion-buttons slot="secondary" class="ion-padding-end">
         <ion-button (click)="toggleModal()" fill="clear">
