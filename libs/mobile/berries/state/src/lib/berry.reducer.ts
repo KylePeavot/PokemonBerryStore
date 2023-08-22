@@ -18,17 +18,31 @@ export interface BerryState {
 	berryFilters: BerryFilters;
 }
 
+export interface SelectedFirmnessTypes {
+	isVerySoftSelected: boolean;
+	isSoftSelected: boolean;
+	isHardSelected: boolean;
+	isVeryHardSelected: boolean;
+	isSuperHardSelected: boolean;
+}
+
 export interface BerryFilters {
-	searchTerm: string | null;
-	selectedFirmnessTypes: BerryFirmness[];
+	searchTerm: string;
+	selectedFirmnessTypes: SelectedFirmnessTypes;
 }
 
 const initialState: BerryState = {
 	unfilteredBerries: [],
 	filteredBerries: [],
 	berryFilters: {
-		searchTerm: null,
-		selectedFirmnessTypes: [],
+		searchTerm: '',
+		selectedFirmnessTypes: {
+			isVerySoftSelected: false,
+			isSoftSelected: false,
+			isHardSelected: false,
+			isVeryHardSelected: false,
+			isSuperHardSelected: false,
+		},
 	},
 };
 
@@ -69,6 +83,10 @@ export const berryReducer = createReducer<BerryState>(
 	on(berriesFilterUpdated, (state, action): BerryState => {
 		return {
 			...state,
+			berryFilters: {
+				...state.berryFilters,
+				selectedFirmnessTypes: action.selectedFirmnessTypes,
+			},
 			filteredBerries: filterBerries(
 				{
 					searchTerm: state.berryFilters.searchTerm,
@@ -84,19 +102,33 @@ const filterBerries = (
 	{ searchTerm, selectedFirmnessTypes }: BerryFilters,
 	berries: Berry[]
 ): Berry[] => {
-	if (!searchTerm) {
-		return berries;
-	}
+	const isNoFirmnessSelected: boolean = Object.values(
+		selectedFirmnessTypes
+	).every((isFirmnessSelected) => !isFirmnessSelected);
+
+	const isFirmnessSelected = (firmness: BerryFirmness): boolean => {
+		switch (firmness) {
+			case 'very-soft':
+				return selectedFirmnessTypes.isVerySoftSelected;
+			case 'soft':
+				return selectedFirmnessTypes.isSoftSelected;
+			case 'hard':
+				return selectedFirmnessTypes.isHardSelected;
+			case 'very-hard':
+				return selectedFirmnessTypes.isVeryHardSelected;
+			case 'super-hard':
+				return selectedFirmnessTypes.isSuperHardSelected;
+		}
+	};
 
 	return berries.filter((berry) => {
 		const doesNameMatchSearchTerm = berry.name
 			.toLowerCase()
 			.includes(searchTerm.toLowerCase());
 
-		const isFirmnessSelectedOrNothingSelected = selectedFirmnessTypes.length
-			? selectedFirmnessTypes.includes(berry.firmness)
-			: true;
-
-		return doesNameMatchSearchTerm && isFirmnessSelectedOrNothingSelected;
+		return (
+			doesNameMatchSearchTerm &&
+			(isNoFirmnessSelected || isFirmnessSelected(berry.firmness))
+		);
 	});
 };

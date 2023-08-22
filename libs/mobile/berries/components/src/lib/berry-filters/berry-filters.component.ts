@@ -20,17 +20,38 @@ export class BerryFiltersComponent {
 
 	@Input()
 	currentlyActiveFilters: BerryFilters;
+	newFilters: Omit<BerryFilters, 'searchTerm'>;
+
 	constructor(private store: Store<BerryState>) {}
 
 	handleSearchTermChanged(event: InputCustomEvent) {
 		this.store.dispatch(
 			BerryActions.berriesSearchTermUpdated({
-				searchTerm: event.detail.value ?? null,
+				searchTerm: event.detail.value ?? '',
 			})
 		);
 	}
 
-	toggleModal() {
-		this.isFilterModalOpen = !this.isFilterModalOpen;
+	handleOpenModal() {
+		this.newFilters = {
+			selectedFirmnessTypes: {
+				...this.currentlyActiveFilters.selectedFirmnessTypes,
+			},
+		};
+
+		this.isFilterModalOpen = true;
+	}
+
+	handleCancel() {
+		this.isFilterModalOpen = false;
+	}
+
+	handleConfirm() {
+		this.store.dispatch(
+			BerryActions.berriesFilterUpdated({
+				selectedFirmnessTypes: this.newFilters.selectedFirmnessTypes,
+			})
+		);
+		this.isFilterModalOpen = false;
 	}
 }
