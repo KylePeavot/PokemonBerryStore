@@ -72,6 +72,40 @@
                     </ion-checkbox>
                 </ion-item>
             </ion-list>
+
+            <ion-list lines="none">
+                <ion-list-header>Flavour</ion-list-header>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.spicy" label="Spicy"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.dry" label="Dry"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.sweet" label="Sweet"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.bitter" label="Bitter"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+                <ion-item>
+                    <ion-range [(ngModel)]="newFilters.flavorPotencyRanges.sour" label="Sour"
+                               class='flavor-range ion-padding-end' [dualKnobs]="true" [pin]="true" [ticks]="true"
+                               [snaps]="true" [min]="0" [max]="45" [step]="5"
+                               [value]="{ lower: 0, upper: 45 }"></ion-range>
+                </ion-item>
+            </ion-list>
         </ion-content>
     </ng-template>
 </ion-modal>

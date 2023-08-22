@@ -37,6 +37,9 @@ export class BerryFiltersComponent {
 			selectedFirmnessTypes: {
 				...this.currentlyActiveFilters.selectedFirmnessTypes,
 			},
+			flavorPotencyRanges: {
+				...this.currentlyActiveFilters.flavorPotencyRanges,
+			},
 		};
 
 		this.isFilterModalOpen = true;
@@ -50,6 +53,7 @@ export class BerryFiltersComponent {
 		this.store.dispatch(
 			BerryActions.berriesFilterUpdated({
 				selectedFirmnessTypes: this.newFilters.selectedFirmnessTypes,
+				flavorPotencyRanges: this.newFilters.flavorPotencyRanges,
 			})
 		);
 		this.isFilterModalOpen = false;

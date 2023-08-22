@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { BerryList } from '@pokemon-berry-store/mobile/berries/services';
-import { SelectedFirmnessTypes } from './berry.reducer';
+import { FlavorPotencyRanges, SelectedFirmnessTypes } from './berry.reducer';
 
 export const loadBerries = createAction('[Berry Page] Load Berries');
 
@@ -16,5 +16,8 @@ export const berriesSearchTermUpdated = createAction(
 
 export const berriesFilterUpdated = createAction(
 	'[Berry Page] Berries Filter Updated',
-	props<{ selectedFirmnessTypes: SelectedFirmnessTypes }>()
+	props<{
+		selectedFirmnessTypes: SelectedFirmnessTypes;
+		flavorPotencyRanges: FlavorPotencyRanges;
+	}>()
 );
