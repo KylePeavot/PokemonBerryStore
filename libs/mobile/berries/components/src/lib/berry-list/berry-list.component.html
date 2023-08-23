@@ -1,14 +1,66 @@
 <ion-list>
-    <ion-item *ngFor="let berry of berries">
-        <ion-grid>
-            <ion-row>
-                <ion-label>#{{berry.id}}: {{berry.name}}</ion-label>
-                <ion-img *ngIf="berry.spriteUrl" src="{{berry.spriteUrl}}" alt="the berry"/>
-            </ion-row>
-            <ion-row>
-                <p>Firmness: {{berry.prettyPrintFirmness()}}</p>
-                <p>Flavor potency: {{berry.prettyPrintFlavorPotencyMap()}}</p>
-            </ion-row>
-        </ion-grid>
-    </ion-item>
+	<ion-card *ngFor="let berry of berries">
+		<ion-card-header>
+			<div class="berry-header-container">
+				<ion-card-title>
+					{{ berry.prettyPrintName() }}
+				</ion-card-title>
+				<ion-img src="{{ berry.spriteUrl }}" alt="{{ berry.name }}">
+				</ion-img>
+			</div>
+		</ion-card-header>
+		<ion-card-content>
+			<ion-grid
+					class="ion-no-padding"
+					style="--ion-grid-column-padding: 60px"
+			>
+				<ion-row>
+					<ion-col>
+						<ion-item
+								lines="none"
+								class="berry-flavor-item ion-no-padding"
+						>
+							<ion-text class="ion-no-margin">
+								A {{ berry.prettyPrintFirmness() }} berry
+							</ion-text>
+						</ion-item>
+					</ion-col>
+					<ion-col>
+						<app-berry-flavor-bar
+								flavorLabel="Spicy"
+								[potency]="berry.flavorPotencyMap.spicy"
+						/>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<app-berry-flavor-bar
+								flavorLabel="Dry"
+								[potency]="berry.flavorPotencyMap.dry"
+						/>
+					</ion-col>
+					<ion-col>
+						<app-berry-flavor-bar
+								flavorLabel="Sweet"
+								[potency]="berry.flavorPotencyMap.sweet"
+						/>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<app-berry-flavor-bar
+								flavorLabel="Bitter"
+								[potency]="berry.flavorPotencyMap.bitter"
+						/>
+					</ion-col>
+					<ion-col>
+						<app-berry-flavor-bar
+								flavorLabel="Sour"
+								[potency]="berry.flavorPotencyMap.sour"
+						/>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-content>
+	</ion-card>
 </ion-list>

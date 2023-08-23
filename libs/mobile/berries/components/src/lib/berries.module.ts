@@ -15,6 +15,7 @@ import {
 	BerryEffects,
 	berryReducer,
 } from '@pokemon-berry-store/mobile/berries/state';
+import { BerryFlavorBarComponent } from './berry-flavor-bar/berry-flavor-bar.component';
 
 @NgModule({
 	imports: [
@@ -26,6 +27,11 @@ import {
 		EffectsModule.forFeature([BerryEffects]),
 		NgOptimizedImage,
 	],
-	declarations: [BerriesShellPage, BerryListComponent, BerryFiltersComponent],
+	declarations: [
+		BerriesShellPage,
+		BerryListComponent,
+		BerryFiltersComponent,
+		BerryFlavorBarComponent,
+	],
 })
 export class BerriesPageModule {}

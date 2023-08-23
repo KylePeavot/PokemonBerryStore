@@ -1,0 +1,10 @@
+.berry-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.berry-flavor-item {
+  --min-height: 24px;
+  --inner-padding-end: 12px;
+}

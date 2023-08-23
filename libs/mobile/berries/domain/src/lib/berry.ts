@@ -31,7 +31,7 @@ export class Berry {
 	}
 
 	prettyPrintFirmness(): string {
-		return this.firmness.charAt(0).toUpperCase() + this.firmness.slice(1);
+		return this.firmness.replace('-', ' ');
 	}
 
 	prettyPrintFlavorPotencyMap(): string {
