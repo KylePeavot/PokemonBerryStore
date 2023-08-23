@@ -1,4 +1,8 @@
-<ion-item lines="none" class="berry-flavor-bar-item ion-no-padding">
+<div class="flavor-bar-container">
 	<ion-label class="ion-no-margin">{{ flavorLabel }}</ion-label>
-	<ion-note slot="end">{{ potency }}</ion-note>
-</ion-item>
+	<b> {{ potency }}</b>
+	<div
+			class="flavor-potency-bar"
+			style="{{ 'width: ' + ((potency / 50) * 90 + 3) + '%;' }}"
+	></div>
+</div>

@@ -16,14 +16,9 @@
 			>
 				<ion-row>
 					<ion-col>
-						<ion-item
-								lines="none"
-								class="berry-flavor-item ion-no-padding"
-						>
-							<ion-text class="ion-no-margin">
-								A {{ berry.prettyPrintFirmness() }} berry
-							</ion-text>
-						</ion-item>
+						<ion-text class="ion-no-margin">
+							A <b>{{ berry.prettyPrintFirmness() }}</b> berry
+						</ion-text>
 					</ion-col>
 					<ion-col>
 						<app-berry-flavor-bar
