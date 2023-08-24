@@ -1,0 +1,12 @@
+.flavor-bar-container {
+	display: grid;
+	grid-template-columns: 35% 15% auto;
+	gap: 3px;
+}
+
+.flavor-potency-bar {
+	display: flex;
+	align-self: center;
+	height: 2px;
+	background: #2dd36f;
+}
