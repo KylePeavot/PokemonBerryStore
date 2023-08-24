@@ -27,6 +27,7 @@ export class BerryService {
 								firmness: berry.firmness,
 								spriteUrl: berry.spriteUrl,
 								flavorPotencyMap: berry.flavorPotencyMap,
+								priceInPence: berry.priceInPence,
 							})
 					),
 				})),

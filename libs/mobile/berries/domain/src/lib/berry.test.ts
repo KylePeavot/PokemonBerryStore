@@ -5,7 +5,7 @@ describe('Berry', () => {
 		id: 1,
 		name: 'name',
 		spriteUrl: 'the-spriteUrl',
-		firmness: 'hard',
+		firmness: 'super-hard',
 		flavorPotencyMap: {
 			spicy: 10,
 			dry: 20,
@@ -13,6 +13,7 @@ describe('Berry', () => {
 			bitter: 40,
 			sour: 50,
 		},
+		priceInPence: 5000,
 	};
 
 	it('should create an instance', () => {
@@ -23,7 +24,7 @@ describe('Berry', () => {
 		expect(berry.id).toStrictEqual(1);
 		expect(berry.name).toStrictEqual('name');
 		expect(berry.spriteUrl).toStrictEqual('the-spriteUrl');
-		expect(berry.firmness).toStrictEqual('hard');
+		expect(berry.firmness).toStrictEqual('super-hard');
 		expect(berry.flavorPotencyMap).toStrictEqual({
 			spicy: 10,
 			dry: 20,
@@ -31,6 +32,7 @@ describe('Berry', () => {
 			bitter: 40,
 			sour: 50,
 		});
+		expect(berry.priceInPence).toStrictEqual(5000);
 	});
 
 	it('should pretty print the name', () => {
@@ -46,7 +48,7 @@ describe('Berry', () => {
 		const berry = new Berry(DEFAULT_BERRY_PROPS);
 
 		//When/Then
-		expect(berry.prettyPrintFirmness()).toStrictEqual('Hard');
+		expect(berry.prettyPrintFirmness()).toStrictEqual('Super hard');
 	});
 
 	it('should pretty print the flavor potency maps', () => {

@@ -8,7 +8,10 @@
 				<ion-img src="{{ berry.spriteUrl }}" alt="{{ berry.name }}">
 				</ion-img>
 			</div>
-			<ion-card-subtitle>£4.99</ion-card-subtitle>
+			<!--			use angular's currency pipe to display price in pence-->
+			<ion-card-subtitle>
+				{{ berry.priceInPence / 100 | currency : 'GBP' }}
+			</ion-card-subtitle>
 		</ion-card-header>
 		<ion-card-content>
 			<ion-grid
@@ -57,13 +60,6 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-
-			<!--			TODO
-				 Input is too wide and it's not obvious that it's an input. Maybe a line underneath can solve this?
-				 General visual improvements too
-				  
--->
-
 			<ion-grid class="ion-no-padding ion-padding-top">
 				<ion-row class="ion-align-items-center">
 					<ion-col>
