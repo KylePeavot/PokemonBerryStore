@@ -9,6 +9,7 @@ export interface BerryProps {
 	spriteUrl: string | null;
 	firmness: BerryFirmness;
 	flavorPotencyMap: FlavorPotencyMap;
+	priceInPence: number;
 }
 
 export class Berry {
@@ -17,6 +18,7 @@ export class Berry {
 	readonly spriteUrl: string | null;
 	readonly firmness: BerryFirmness;
 	readonly flavorPotencyMap: FlavorPotencyMap;
+	readonly priceInPence: number;
 
 	constructor(props: BerryProps) {
 		this.id = props.id;
@@ -24,6 +26,7 @@ export class Berry {
 		this.spriteUrl = props.spriteUrl;
 		this.firmness = props.firmness;
 		this.flavorPotencyMap = props.flavorPotencyMap;
+		this.priceInPence = props.priceInPence;
 	}
 
 	prettyPrintName(): string {
@@ -31,7 +34,11 @@ export class Berry {
 	}
 
 	prettyPrintFirmness(): string {
-		return this.firmness.replace('-', ' ');
+		const words = this.firmness.split('-');
+
+		words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+
+		return words.join(' ');
 	}
 
 	prettyPrintFlavorPotencyMap(): string {

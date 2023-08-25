@@ -41,6 +41,7 @@ describe('Berry controller', () => {
 							bitter: 0,
 							sour: 0,
 						},
+						priceInPence: 5100,
 					},
 				]),
 			});

@@ -21,5 +21,6 @@ export interface GetBerriesListResponse {
 		spriteUrl: string | null;
 		firmness: BerryFirmness;
 		flavorPotencyMap: FlavorPotencyMap;
+		priceInPence: number;
 	}[];
 }

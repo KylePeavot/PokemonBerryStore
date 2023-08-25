@@ -89,6 +89,18 @@ export class BerryController {
 						(flavor) => flavor.flavor.name === 'sour'
 					)?.potency ?? 0;
 
+				const k = 1;
+				const priceInPence =
+					Math.floor(
+						(k *
+							(spicyPotency +
+								dryPotency +
+								sweetPotency +
+								bitterPotency +
+								sourPotency)) /
+							5
+					) * 100;
+
 				return {
 					id: berryData.id,
 					name: berryData.name,
@@ -101,6 +113,7 @@ export class BerryController {
 						bitter: bitterPotency,
 						sour: sourPotency,
 					},
+					priceInPence,
 				};
 			})
 		);
