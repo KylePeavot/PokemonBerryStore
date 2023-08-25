@@ -60,40 +60,7 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-			<ion-grid class="ion-no-padding ion-padding-top">
-				<ion-row class="ion-align-items-center">
-					<ion-col>
-						<div class="item-counter__container">
-							<ion-button
-								fill="clear"
-								size="small"
-								style="--padding-start: 0"
-							>
-								<ion-icon
-									slot="icon-only"
-									name="remove-circle"
-								></ion-icon>
-							</ion-button>
-							<ion-input
-								class="item-counter__number-input"
-								type="number"
-								[value]="1"
-							></ion-input>
-							<ion-button fill="clear" size="small">
-								<ion-icon
-									slot="icon-only"
-									name="add-circle"
-								></ion-icon>
-							</ion-button>
-						</div>
-					</ion-col>
-					<ion-col>
-						<ion-button class="ion-no-padding" expand="block"
-							>Add to cart</ion-button
-						>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
+			<app-add-to-cart-counter [berry]="berry" />
 		</ion-card-content>
 	</ion-card>
 </ion-list>
