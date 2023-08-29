@@ -16,7 +16,7 @@ import {
 	berryReducer,
 } from '@pokemon-berry-store/mobile/berries/state';
 import { BerryFlavorBarComponent } from './berry-flavor-bar/berry-flavor-bar.component';
-import { CartModule } from '../cart/cart.module';
+import { CartModule } from '@pokemon-berry-store/mobile/cart/components';
 
 @NgModule({
 	imports: [

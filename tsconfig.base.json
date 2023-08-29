@@ -10,10 +10,7 @@
 		"importHelpers": true,
 		"target": "es2015",
 		"module": "esnext",
-      "lib": [
-        "es2020",
-        "dom"
-      ],
+		"lib": ["es2020", "dom"],
 		"skipLibCheck": true,
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
@@ -27,14 +24,20 @@
 			"@pokemon-berry-store/mobile/berries/components": [
 				"libs/mobile/berries/components/src/index.ts"
 			],
-          "@pokemon-berry-store/mobile/berries/domain": [
-            "libs/mobile/berries/domain/src/index.ts"
-          ],
+			"@pokemon-berry-store/mobile/berries/domain": [
+				"libs/mobile/berries/domain/src/index.ts"
+			],
 			"@pokemon-berry-store/mobile/berries/services": [
 				"libs/mobile/berries/services/src/index.ts"
 			],
 			"@pokemon-berry-store/mobile/berries/state": [
 				"libs/mobile/berries/state/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/cart/components": [
+				"libs/mobile/cart/components/src/index.ts"
+			],
+			"@pokemon-berry-store/mobile/cart/state": [
+				"libs/mobile/cart/state/src/index.ts"
 			],
 			"@pokemon-berry-store/mobile/util": [
 				"libs/mobile/util/src/index.ts"
@@ -44,8 +47,5 @@
 			]
 		}
 	},
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+	"exclude": ["node_modules", "tmp"]
 }

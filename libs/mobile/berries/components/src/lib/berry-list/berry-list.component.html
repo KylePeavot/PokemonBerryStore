@@ -60,7 +60,9 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-			<app-add-to-cart-counter [berry]="berry" />
+			<app-add-to-cart-counter
+				(addToCartClicked)="handleAddItemClicked($event, berry)"
+			/>
 		</ion-card-content>
 	</ion-card>
 </ion-list>

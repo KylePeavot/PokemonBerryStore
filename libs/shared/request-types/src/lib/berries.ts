@@ -18,7 +18,7 @@ export interface GetBerriesListResponse {
 	berries: {
 		id: number;
 		name: string;
-		spriteUrl: string | null;
+		spriteUrl: string;
 		firmness: BerryFirmness;
 		flavorPotencyMap: FlavorPotencyMap;
 		priceInPence: number;

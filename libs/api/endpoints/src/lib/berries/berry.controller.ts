@@ -104,7 +104,7 @@ export class BerryController {
 				return {
 					id: berryData.id,
 					name: berryData.name,
-					spriteUrl: itemData.sprites.default,
+					spriteUrl: itemData.sprites.default as string,
 					firmness: berryData.firmness.name as BerryFirmness,
 					flavorPotencyMap: {
 						spicy: spicyPotency,
