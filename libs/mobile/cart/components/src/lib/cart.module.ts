@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CheckoutFooterComponent } from './checkout-footer/checkout-footer.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
 	imports: [
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
 		StoreModule.forFeature('cart', cartReducer),
 		IonicModule,
 		FormsModule,
+		RouterLink,
 	],
 	declarations: [AddToCartCounterComponent, CheckoutFooterComponent],
 	exports: [AddToCartCounterComponent, CheckoutFooterComponent],

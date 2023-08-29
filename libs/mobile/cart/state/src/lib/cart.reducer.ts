@@ -24,11 +24,45 @@ export interface CartState {
 	cart: Cart;
 }
 
+// TODO: Remove this initial state
 const initialState: CartState = {
 	cart: {
-		berries: [],
-		numberOfBerries: 0,
-		totalValueInPence: 0,
+		berries: [
+			{
+				id: 1,
+				name: 'Cheri',
+				spriteUrl:
+					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cheri-berry.png',
+				individualBerryPriceInPence: 200,
+				quantity: 3,
+			},
+			{
+				id: 2,
+				name: 'Chesto',
+				spriteUrl:
+					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chesto-berry.png',
+				individualBerryPriceInPence: 200,
+				quantity: 2,
+			},
+			{
+				id: 10,
+				name: 'Sitrus',
+				spriteUrl:
+					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sitrus-berry.png',
+				individualBerryPriceInPence: 800,
+				quantity: 2,
+			},
+			{
+				id: 11,
+				name: 'Figy',
+				spriteUrl:
+					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/figy-berry.png',
+				individualBerryPriceInPence: 300,
+				quantity: 3,
+			},
+		],
+		numberOfBerries: 10,
+		totalValueInPence: 3500,
 	},
 };
 
@@ -73,7 +107,7 @@ const addBerryToCart = (
 		);
 	}
 
-	return [...berriesInCart, berryToAdd].sort((a, b) =>
+	return [...berriesInCart, { ...berryToAdd }].sort((a, b) =>
 		a.id > b.id ? 1 : -1
 	);
 };

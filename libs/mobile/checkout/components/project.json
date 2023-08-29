@@ -1,0 +1,43 @@
+{
+	"name": "mobile-checkout-components",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/mobile/checkout/components/src",
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nx/js:tsc",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/mobile/checkout/components",
+				"main": "libs/mobile/checkout/components/src/index.ts",
+				"tsConfig": "libs/mobile/checkout/components/tsconfig.lib.json",
+				"assets": ["libs/mobile/checkout/components/*.md"]
+			}
+		},
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": [
+					"libs/mobile/checkout/components/**/*.ts",
+					"libs/mobile/checkout/components/package.json"
+				]
+			}
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/mobile/checkout/components/jest.config.ts",
+				"passWithNoTests": true
+			},
+			"configurations": {
+				"ci": {
+					"ci": true,
+					"codeCoverage": true
+				}
+			}
+		}
+	},
+	"tags": []
+}

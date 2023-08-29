@@ -1,0 +1,27 @@
+<ion-card>
+	<ion-card-header>
+		<ion-card-title>Order summary</ion-card-title>
+	</ion-card-header>
+	<ion-card-content>
+		<ion-grid>
+			<ion-row *ngFor="let berry of cart.berries">
+				<ion-col>{{ berry.quantity }} x {{ berry.name }}</ion-col>
+				<ion-col>{{
+					(berry.quantity * berry.individualBerryPriceInPence) / 100
+						| currency : 'GBP' : true : '1.2-2'
+				}}</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col><strong>Total</strong></ion-col>
+				<ion-col>
+					<b>
+						{{
+							cart.totalValueInPence / 100
+								| currency : 'GBP' : true : '1.2-2'
+						}}
+					</b>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>

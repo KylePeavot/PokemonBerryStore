@@ -10,6 +10,13 @@ const routes: Routes = [
 			),
 	},
 	{
+		path: 'checkout',
+		loadChildren: () =>
+			import('@pokemon-berry-store/mobile/checkout/components').then(
+				(m) => m.CheckoutPageModule
+			),
+	},
+	{
 		path: '',
 		redirectTo: 'berries',
 		pathMatch: 'full',

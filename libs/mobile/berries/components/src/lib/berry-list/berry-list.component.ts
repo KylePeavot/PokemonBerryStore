@@ -18,7 +18,7 @@ export class BerryListComponent {
 			addBerry({
 				berryToAdd: {
 					id: berry.id,
-					name: berry.name,
+					name: berry.prettyPrintName(),
 					spriteUrl: berry.spriteUrl,
 					individualBerryPriceInPence: berry.priceInPence,
 					quantity: $event,
