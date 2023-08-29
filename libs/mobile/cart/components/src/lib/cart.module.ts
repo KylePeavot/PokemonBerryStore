@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CheckoutFooterComponent } from './checkout-footer/checkout-footer.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SharedModule } from '@pokemon-berry-store/mobile/shared/components';
 
 @NgModule({
 	imports: [
@@ -15,6 +16,7 @@ import { RouterLink } from '@angular/router';
 		IonicModule,
 		FormsModule,
 		RouterLink,
+		SharedModule,
 	],
 	declarations: [AddToCartCounterComponent, CheckoutFooterComponent],
 	exports: [AddToCartCounterComponent, CheckoutFooterComponent],

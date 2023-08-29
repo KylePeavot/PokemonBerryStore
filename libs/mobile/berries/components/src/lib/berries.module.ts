@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
@@ -27,7 +27,6 @@ import { SharedModule } from '@pokemon-berry-store/mobile/shared/components';
 		BerriesPageRoutingModule,
 		StoreModule.forFeature('berries', berryReducer),
 		EffectsModule.forFeature([BerryEffects]),
-		NgOptimizedImage,
 		CartModule,
 		SharedModule,
 	],

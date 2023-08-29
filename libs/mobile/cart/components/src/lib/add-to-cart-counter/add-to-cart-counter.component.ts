@@ -11,18 +11,6 @@ export class AddToCartCounterComponent {
 
 	quantity = 1;
 
-	incrementQuantity() {
-		this.quantity++;
-	}
-
-	decrementQuantity() {
-		if (this.quantity === 0) {
-			return;
-		}
-
-		this.quantity--;
-	}
-
 	handleAddToCartClicked() {
 		if (this.quantity === 0) {
 			return;

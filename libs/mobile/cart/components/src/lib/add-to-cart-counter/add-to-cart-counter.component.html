@@ -1,28 +1,7 @@
 <ion-grid class="ion-no-padding ion-padding-top">
 	<ion-row class="ion-align-items-center">
 		<ion-col>
-			<div class="item-counter__container">
-				<ion-button
-					fill="clear"
-					size="small"
-					style="--padding-start: 0"
-					(click)="decrementQuantity()"
-				>
-					<ion-icon slot="icon-only" name="remove-circle"></ion-icon>
-				</ion-button>
-				<ion-input
-					class="item-counter__number-input"
-					type="number"
-					[(ngModel)]="quantity"
-				></ion-input>
-				<ion-button
-					fill="clear"
-					size="small"
-					(click)="incrementQuantity()"
-				>
-					<ion-icon slot="icon-only" name="add-circle"></ion-icon>
-				</ion-button>
-			</div>
+			<app-counter [(quantity)]="quantity" />
 		</ion-col>
 		<ion-col>
 			<ion-button

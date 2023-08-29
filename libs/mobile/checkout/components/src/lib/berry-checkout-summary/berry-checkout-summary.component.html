@@ -4,20 +4,33 @@
 	</ion-card-header>
 	<ion-card-content>
 		<ion-grid>
-			<ion-row *ngFor="let berry of cart.berries">
-				<ion-col>{{ berry.quantity }} x {{ berry.name }}</ion-col>
-				<ion-col>{{
+			<ion-row
+				*ngFor="let berry of cart.berries"
+				class="ion-align-items-center"
+			>
+				<ion-col size="4">{{ berry.name }}</ion-col>
+				<ion-col size="5">
+					<app-counter
+						[allowNonPositive]="true"
+						[quantity]="berry.quantity"
+						(quantityChange)="
+							handleBerryQuantityChanged(berry, $event)
+						"
+					/>
+				</ion-col>
+				<ion-col size="3">{{
 					(berry.quantity * berry.individualBerryPriceInPence) / 100
-						| currency : 'GBP' : true : '1.2-2'
+						| currency : 'GBP' : 'symbol' : '1.2-2'
 				}}</ion-col>
 			</ion-row>
 			<ion-row>
-				<ion-col><strong>Total</strong></ion-col>
-				<ion-col>
+				<ion-col size="4"><strong>Total</strong></ion-col>
+				<ion-col size="5"></ion-col>
+				<ion-col size="3">
 					<b>
 						{{
 							cart.totalValueInPence / 100
-								| currency : 'GBP' : true : '1.2-2'
+								| currency : 'GBP' : 'symbol' : '1.2-2'
 						}}
 					</b>
 				</ion-col>
