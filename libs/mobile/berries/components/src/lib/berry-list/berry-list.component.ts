@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Berry } from '@pokemon-berry-store/mobile/berries/domain';
 import { Store } from '@ngrx/store';
-import { addBerry } from '@pokemon-berry-store/mobile/cart/state';
+import { updateQuantityOfBerryInCart } from '@pokemon-berry-store/mobile/cart/state';
 
 @Component({
 	selector: 'app-berry-list',
@@ -15,14 +15,15 @@ export class BerryListComponent {
 
 	handleAddItemClicked($event: number, berry: Berry) {
 		this.store.dispatch(
-			addBerry({
-				berryToAdd: {
+			updateQuantityOfBerryInCart({
+				berryToUpdate: {
 					id: berry.id,
-					name: berry.name,
+					name: berry.prettyPrintName(),
 					spriteUrl: berry.spriteUrl,
 					individualBerryPriceInPence: berry.priceInPence,
 					quantity: $event,
 				},
+				changeInQuantity: $event,
 			})
 		);
 	}

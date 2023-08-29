@@ -1,5 +1,5 @@
 <ng-container *ngIf="cart.numberOfBerries !== 0; else emptyCart">
-	<ion-button class="ion-no-margin" expand="full">
+	<ion-button class="ion-no-margin" expand="full" routerLink="/checkout">
 		Checkout: {{ cart.numberOfBerries }} x
 		<!--	Show up to five berrys-->
 		<ng-container *ngFor="let berry of cart.berries">

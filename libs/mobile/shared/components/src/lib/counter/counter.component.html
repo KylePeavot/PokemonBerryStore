@@ -1,0 +1,26 @@
+<div class="item-counter__container">
+	<ion-button
+		fill="clear"
+		size="small"
+		style="--padding-start: 0"
+		(click)="decrementQuantity()"
+	>
+		<ion-icon
+			*ngIf="quantity > 1 || !allowNonPositive; else delete"
+			slot="icon-only"
+			name="remove-circle"
+		></ion-icon>
+		<ng-template #delete>
+			<ion-icon slot="icon-only" name="trash"></ion-icon>
+		</ng-template>
+	</ion-button>
+	<ion-input
+		class="item-counter__number-input"
+		type="number"
+		[(ngModel)]="quantity"
+		(ionBlur)="handleInputUnfocused()"
+	></ion-input>
+	<ion-button fill="clear" size="small" (click)="incrementQuantity()">
+		<ion-icon slot="icon-only" name="add-circle"></ion-icon>
+	</ion-button>
+</div>

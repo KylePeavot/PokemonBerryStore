@@ -1,2 +1,8 @@
-export { cartReducer, CartState, Cart, getCart } from './lib/cart.reducer';
-export { addBerry } from './lib/cart.actions';
+export {
+	BerryCartItem,
+	Cart,
+	cartReducer,
+	CartState,
+	getCart,
+} from './lib/cart.reducer';
+export { updateQuantityOfBerryInCart } from './lib/cart.actions';

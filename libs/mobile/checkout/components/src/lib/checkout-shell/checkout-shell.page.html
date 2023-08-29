@@ -1,0 +1,5 @@
+<app-berry-store-header />
+
+<ion-content [fullscreen]="true" id="berry-content">
+	<app-berry-checkout-summary *ngIf="cart$ | async as cart" [cart]="cart" />
+</ion-content>
