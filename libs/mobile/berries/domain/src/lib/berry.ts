@@ -6,7 +6,7 @@ import {
 export interface BerryProps {
 	id: number;
 	name: string;
-	spriteUrl: string | null;
+	spriteUrl: string;
 	firmness: BerryFirmness;
 	flavorPotencyMap: FlavorPotencyMap;
 	priceInPence: number;
@@ -15,7 +15,7 @@ export interface BerryProps {
 export class Berry {
 	readonly id: number;
 	readonly name: string;
-	readonly spriteUrl: string | null;
+	readonly spriteUrl: string;
 	readonly firmness: BerryFirmness;
 	readonly flavorPotencyMap: FlavorPotencyMap;
 	readonly priceInPence: number;

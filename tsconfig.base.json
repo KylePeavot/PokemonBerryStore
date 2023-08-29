@@ -36,6 +36,9 @@
 			"@pokemon-berry-store/mobile/cart/components": [
 				"libs/mobile/cart/components/src/index.ts"
 			],
+			"@pokemon-berry-store/mobile/cart/state": [
+				"libs/mobile/cart/state/src/index.ts"
+			],
 			"@pokemon-berry-store/mobile/util": [
 				"libs/mobile/util/src/index.ts"
 			],

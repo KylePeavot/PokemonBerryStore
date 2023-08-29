@@ -1,0 +1,27 @@
+<ng-container *ngIf="cart.numberOfBerries !== 0; else emptyCart">
+	<ion-button class="ion-no-margin" expand="full">
+		Checkout: {{ cart.numberOfBerries }} x
+		<!--	Show up to five berrys-->
+		<ng-container *ngFor="let berry of cart.berries">
+			<ion-img
+				*ngIf="cart.berries.indexOf(berry) <= 4"
+				[src]="berry.spriteUrl"
+			></ion-img>
+		</ng-container>
+		<!--	If more than six berries, show a ellipses -->
+		<ng-container *ngIf="cart.berries.length > 5"> ... </ng-container>
+		({{ cart.totalValueInPence / 100 | currency : 'GBP' }})
+	</ion-button>
+</ng-container>
+<ng-template #emptyCart>
+	<div class="no-berries-cart__container">
+		<ion-button
+			class="ion-no-margin"
+			style="--color: var(--ion-color-light)"
+			expand="full"
+			[disabled]="true"
+		>
+			No berries in cart
+		</ion-button>
+	</div>
+</ng-template>
