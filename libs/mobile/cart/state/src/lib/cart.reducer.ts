@@ -22,6 +22,8 @@ export interface Cart {
 
 export interface CartState {
 	cart: Cart;
+	deliveryAddress: string;
+	deliveryDate: Date;
 }
 
 // TODO: Remove this initial state
@@ -64,6 +66,10 @@ const initialState: CartState = {
 		numberOfBerries: 10,
 		totalValueInPence: 3500,
 	},
+	deliveryAddress: '',
+	deliveryDate: new Date(
+		new Date(new Date().setDate(new Date().getDate() + 2)).setHours(8, 0, 0)
+	),
 };
 
 export const getCartFeatureState = createFeatureSelector<CartState>('cart');
