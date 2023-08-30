@@ -2,4 +2,9 @@
 
 <ion-content [fullscreen]="true" id="berry-content">
 	<app-berry-checkout-summary *ngIf="cart$ | async as cart" [cart]="cart" />
+	<app-address-selector
+		*ngIf="addresses$ | async as addresses"
+		[addresses]="addresses"
+	/>
+	<!--	<app-date-selector />-->
 </ion-content>

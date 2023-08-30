@@ -1,0 +1,14 @@
+<ion-card>
+	<ion-card-header>
+		<ion-card-title>Address</ion-card-title>
+	</ion-card-header>
+	<ion-card-content>
+		<ion-select label="Default label" placeholder="Favorite Fruit">
+			<ion-select-option
+				*ngFor="let address of addresses"
+				[value]="address"
+				>{{ address }}</ion-select-option
+			>
+		</ion-select>
+	</ion-card-content>
+</ion-card>
