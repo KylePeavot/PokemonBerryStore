@@ -6,6 +6,7 @@ import {
 } from '@ngrx/store';
 import {
 	addressSelected,
+	deliveryDateSelected,
 	loadAddressesSuccess,
 	updateQuantityOfBerryInCart,
 } from './cart.actions';
@@ -128,6 +129,12 @@ export const cartReducer = createReducer<CartState>(
 		return {
 			...state,
 			deliveryAddress: address,
+		};
+	}),
+	on(deliveryDateSelected, (state, { deliveryDate }): CartState => {
+		return {
+			...state,
+			deliveryDate,
 		};
 	})
 );

@@ -12,6 +12,10 @@ export const addressSelected = createAction(
 	props<{ address: string }>()
 );
 
+export const deliveryDateSelected = createAction(
+	'[Checkout] Delivery Date Selected',
+	props<{ deliveryDate: Date }>()
+);
 export const updateQuantityOfBerryInCart = createAction(
 	'[Checkout] Update Quantity of Berry in Cart',
 	props<{
