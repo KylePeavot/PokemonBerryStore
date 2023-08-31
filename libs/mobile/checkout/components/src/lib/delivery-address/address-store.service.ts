@@ -5,12 +5,14 @@ export interface AddressState {
 	addresses: string[];
 	searchTerm: string;
 	deliveryAddress: string | undefined;
+	isAddressModalOpen: boolean;
 }
 
 const initialState: AddressState = {
 	addresses: [],
 	searchTerm: '',
 	deliveryAddress: undefined,
+	isAddressModalOpen: false,
 };
 
 @Injectable()
@@ -31,6 +33,9 @@ export class AddressStore extends ComponentStore<AddressState> {
 			)
 	);
 	readonly deliveryAddress$ = this.select((state) => state.deliveryAddress);
+	readonly isAddressModalOpen$ = this.select(
+		(state) => state.isAddressModalOpen
+	);
 
 	readonly loadAddresses = this.updater((state, addresses: string[]) => ({
 		...state,
@@ -46,6 +51,13 @@ export class AddressStore extends ComponentStore<AddressState> {
 		(state, deliveryAddress: string) => ({
 			...state,
 			deliveryAddress,
+		})
+	);
+
+	readonly loadIsAddressModalOpen = this.updater(
+		(state, isAddressModalOpen: boolean) => ({
+			...state,
+			isAddressModalOpen,
 		})
 	);
 }

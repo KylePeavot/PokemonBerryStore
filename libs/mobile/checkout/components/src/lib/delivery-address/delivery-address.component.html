@@ -6,30 +6,38 @@
 		<ng-container
 			*ngIf="selectedAddress$ | async as selectedAddress; else noAddress"
 		>
-			<ion-item
-				class="ion-no-padding"
-				lines="none"
-			>
-				<ion-text> Shipping to </ion-text>
-				<ion-icon name="arrow-forward-outline" size="small"></ion-icon>
+			<ion-item class="ion-no-padding ion-align-items-start" lines="none">
 				<ion-text>
-					<b>{{ selectedAddress }}</b>
+					Your order will be shipped to <b>{{ selectedAddress }}</b>
 				</ion-text>
+				<ion-button
+					expand="block"
+					fill="clear"
+					(click)="openModal()"
+					slot="end"
+					class="ion-no-margin"
+				>
+					Change
+				</ion-button>
 			</ion-item>
 		</ng-container>
 
 		<ng-template #noAddress>
-			<ion-button expand="block" (click)="handleOpen()">
+			<ion-button expand="block" (click)="openModal()">
 				Search for an address
 			</ion-button>
 		</ng-template>
 
-		<ion-modal [isOpen]="isAddressModalOpen" (didDismiss)="handleCancel()">
+		<ion-modal
+			*ngIf="isAddressModalOpen$ | async as isAddressModalOpen"
+			[isOpen]="isAddressModalOpen"
+			(didDismiss)="closeModal()"
+		>
 			<ng-template>
 				<ion-header>
 					<ion-toolbar>
 						<ion-buttons slot="start">
-							<ion-button [strong]="true" (click)="handleCancel()"
+							<ion-button [strong]="true" (click)="closeModal()"
 								>Cancel</ion-button
 							>
 						</ion-buttons>

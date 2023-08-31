@@ -21,9 +21,7 @@ export class DeliveryAddressComponent implements OnInit {
 
 	filteredAddresses$: Observable<string[]>;
 	selectedAddress$: Observable<string | undefined>;
-
-	//TODO move to store
-	isAddressModalOpen = false;
+	isAddressModalOpen$: Observable<boolean>;
 
 	constructor(
 		private readonly addressStore: AddressStore,
@@ -41,14 +39,15 @@ export class DeliveryAddressComponent implements OnInit {
 
 		this.filteredAddresses$ = this.addressStore.filteredAddresses$;
 		this.selectedAddress$ = this.addressStore.deliveryAddress$;
+		this.isAddressModalOpen$ = this.addressStore.isAddressModalOpen$;
 	}
 
-	handleOpen() {
-		this.isAddressModalOpen = true;
+	openModal() {
+		this.addressStore.loadIsAddressModalOpen(true);
 	}
 
-	handleCancel() {
-		this.isAddressModalOpen = false;
+	closeModal() {
+		this.addressStore.loadIsAddressModalOpen(false);
 	}
 
 	handleSearchTermChange({ detail }: InputCustomEvent) {
@@ -58,6 +57,6 @@ export class DeliveryAddressComponent implements OnInit {
 	handleAddressSelected(address: string) {
 		this.store.dispatch(addressSelected({ address }));
 
-		this.isAddressModalOpen = false;
+		this.closeModal();
 	}
 }
