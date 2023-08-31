@@ -5,6 +5,7 @@ import {
 	on,
 } from '@ngrx/store';
 import {
+	addressSelected,
 	loadAddressesSuccess,
 	updateQuantityOfBerryInCart,
 } from './cart.actions';
@@ -88,6 +89,12 @@ export const getAddresses = createSelector(
 	getCartFeatureState,
 	(state: CartState) => state.addresses
 );
+
+export const getDeliveryAddress = createSelector(
+	getCartFeatureState,
+	(state: CartState) => state.deliveryAddress
+);
+
 export const cartReducer = createReducer<CartState>(
 	initialState,
 	on(
@@ -115,6 +122,12 @@ export const cartReducer = createReducer<CartState>(
 		return {
 			...state,
 			addresses,
+		};
+	}),
+	on(addressSelected, (state, { address }): CartState => {
+		return {
+			...state,
+			deliveryAddress: address,
 		};
 	})
 );

@@ -7,8 +7,13 @@ export const loadAddressesSuccess = createAction(
 	props<{ addresses: string[] }>()
 );
 
+export const addressSelected = createAction(
+	'[Checkout] Address Selected',
+	props<{ address: string }>()
+);
+
 export const updateQuantityOfBerryInCart = createAction(
-	'[Berry Checkout Summary] Update Quantity of Berry in Cart',
+	'[Checkout] Update Quantity of Berry in Cart',
 	props<{
 		berryToUpdate: BerryCartItem;
 		changeInQuantity: number;

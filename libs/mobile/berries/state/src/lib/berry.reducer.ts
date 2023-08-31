@@ -41,6 +41,7 @@ export interface BerryFilters {
 
 const initialState: BerryState = {
 	unfilteredBerries: [],
+	//TODO: Move to a selector
 	filteredBerries: [],
 	berryFilters: {
 		searchTerm: '',

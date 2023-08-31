@@ -5,6 +5,11 @@ export {
 	CartState,
 	getCart,
 	getAddresses,
+	getDeliveryAddress,
 } from './lib/cart.reducer';
-export { updateQuantityOfBerryInCart, loadAddresses } from './lib/cart.actions';
+export {
+	updateQuantityOfBerryInCart,
+	loadAddresses,
+	addressSelected,
+} from './lib/cart.actions';
 export { CartEffects } from './lib/cart.effects';

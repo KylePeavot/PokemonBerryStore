@@ -11,8 +11,8 @@ import {
 	CartEffects,
 	cartReducer,
 } from '@pokemon-berry-store/mobile/cart/state';
-import { AddressSelectorComponent } from './address-selector/address-selector.component';
 import { EffectsModule } from '@ngrx/effects';
+import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 
 @NgModule({
 	imports: [
@@ -27,7 +27,7 @@ import { EffectsModule } from '@ngrx/effects';
 	declarations: [
 		CheckoutShellPage,
 		BerryCheckoutSummary,
-		AddressSelectorComponent,
+		DeliveryAddressComponent,
 	],
 })
 export class CheckoutPageModule {}
