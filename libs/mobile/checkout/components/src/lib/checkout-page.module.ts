@@ -13,21 +13,23 @@ import {
 } from '@pokemon-berry-store/mobile/cart/state';
 import { EffectsModule } from '@ngrx/effects';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+import { OrdersStoreModule } from '@pokemon-berry-store/mobile/orders/state';
 
 @NgModule({
+	declarations: [
+		CheckoutShellPage,
+		BerryCheckoutSummary,
+		DeliveryAddressComponent,
+	],
 	imports: [
 		IonicModule,
 		CommonModule,
 		FormsModule,
 		SharedModule,
 		CheckoutRoutingModule,
+		OrdersStoreModule,
 		StoreModule.forFeature('cart', cartReducer),
 		EffectsModule.forFeature([CartEffects]),
-	],
-	declarations: [
-		CheckoutShellPage,
-		BerryCheckoutSummary,
-		DeliveryAddressComponent,
 	],
 })
 export class CheckoutPageModule {}

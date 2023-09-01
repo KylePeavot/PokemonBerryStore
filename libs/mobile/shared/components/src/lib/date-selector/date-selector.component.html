@@ -3,7 +3,12 @@
 		<ion-card-title>Delivery date</ion-card-title>
 	</ion-card-header>
 	<ion-card-content>
-		<ion-datetime-button datetime="datetime"></ion-datetime-button>
+		<ion-item lines="none" class="ion-no-padding">
+			<ion-datetime-button
+				slot="start"
+				datetime="datetime"
+			></ion-datetime-button>
+		</ion-item>
 	</ion-card-content>
 </ion-card>
 

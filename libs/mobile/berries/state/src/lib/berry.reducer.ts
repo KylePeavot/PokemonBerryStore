@@ -64,6 +64,11 @@ const initialState: BerryState = {
 
 const getBerryFeatureState = createFeatureSelector<BerryState>('berries');
 
+export const getUnfilteredBerries = createSelector(
+	getBerryFeatureState,
+	(state) => state.unfilteredBerries
+);
+
 export const getBerries = createSelector(
 	getBerryFeatureState,
 	(state) => state.filteredBerries

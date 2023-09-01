@@ -12,3 +12,15 @@
 		(dateChange)="handleDeliveryDateChange($event)"
 	/>
 </ion-content>
+
+<ion-footer>
+	<ion-button
+		*ngIf="cart$ | async as cart"
+		class="ion-no-margin"
+		expand="full"
+		[disabled]="!(isCartValid$ | async)"
+		(click)="handleCheckout(cart)"
+	>
+		Place order
+	</ion-button>
+</ion-footer>

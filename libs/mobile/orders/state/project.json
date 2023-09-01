@@ -1,0 +1,19 @@
+{
+	"name": "mobile-orders-state",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/mobile/orders/state/src",
+	"projectType": "library",
+	"targets": {
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": [
+					"libs/mobile/orders/state/**/*.ts",
+					"libs/mobile/orders/state/package.json"
+				]
+			}
+		}
+	},
+	"tags": []
+}

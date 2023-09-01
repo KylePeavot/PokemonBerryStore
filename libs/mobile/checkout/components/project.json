@@ -4,16 +4,6 @@
 	"sourceRoot": "libs/mobile/checkout/components/src",
 	"projectType": "library",
 	"targets": {
-		"build": {
-			"executor": "@nx/js:tsc",
-			"outputs": ["{options.outputPath}"],
-			"options": {
-				"outputPath": "dist/libs/mobile/checkout/components",
-				"main": "libs/mobile/checkout/components/src/index.ts",
-				"tsConfig": "libs/mobile/checkout/components/tsconfig.lib.json",
-				"assets": ["libs/mobile/checkout/components/*.md"]
-			}
-		},
 		"lint": {
 			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],

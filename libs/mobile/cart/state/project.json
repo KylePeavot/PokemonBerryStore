@@ -4,16 +4,6 @@
 	"sourceRoot": "libs/mobile/cart/state/src",
 	"projectType": "library",
 	"targets": {
-		"build": {
-			"executor": "@nx/js:tsc",
-			"outputs": ["{options.outputPath}"],
-			"options": {
-				"outputPath": "dist/libs/mobile/cart/state",
-				"main": "libs/mobile/cart/state/src/index.ts",
-				"tsConfig": "libs/mobile/cart/state/tsconfig.lib.json",
-				"assets": ["libs/mobile/cart/state/*.md"]
-			}
-		},
 		"lint": {
 			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],

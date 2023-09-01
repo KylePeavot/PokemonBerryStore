@@ -45,6 +45,9 @@
 			"@pokemon-berry-store/mobile/checkout/services": [
 				"libs/mobile/checkout/services/src/index.ts"
 			],
+			"@pokemon-berry-store/mobile/orders/state": [
+				"libs/mobile/orders/state/src/index.ts"
+			],
 			"@pokemon-berry-store/mobile/shared/components": [
 				"libs/mobile/shared/components/src/index.ts"
 			],
