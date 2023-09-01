@@ -23,3 +23,5 @@ export const updateQuantityOfBerryInCart = createAction(
 		changeInQuantity: number;
 	}>()
 );
+
+export const resetCart = createAction('[Checkout] Reset Cart');

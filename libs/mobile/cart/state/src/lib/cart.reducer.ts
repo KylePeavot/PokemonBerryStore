@@ -8,6 +8,7 @@ import {
 	addressSelected,
 	deliveryDateSelected,
 	loadAddressesSuccess,
+	resetCart,
 	updateQuantityOfBerryInCart,
 } from './cart.actions';
 
@@ -32,45 +33,11 @@ export interface CartState {
 	deliveryDate: Date;
 }
 
-// TODO: Remove this initial state
 const initialState: CartState = {
 	cart: {
-		berries: [
-			{
-				id: 1,
-				name: 'Cheri',
-				spriteUrl:
-					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cheri-berry.png',
-				individualBerryPriceInPence: 200,
-				quantity: 3,
-			},
-			{
-				id: 2,
-				name: 'Chesto',
-				spriteUrl:
-					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chesto-berry.png',
-				individualBerryPriceInPence: 200,
-				quantity: 2,
-			},
-			{
-				id: 10,
-				name: 'Sitrus',
-				spriteUrl:
-					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sitrus-berry.png',
-				individualBerryPriceInPence: 800,
-				quantity: 2,
-			},
-			{
-				id: 11,
-				name: 'Figy',
-				spriteUrl:
-					'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/figy-berry.png',
-				individualBerryPriceInPence: 300,
-				quantity: 3,
-			},
-		],
-		numberOfBerries: 10,
-		totalValueInPence: 3500,
+		berries: [],
+		numberOfBerries: 0,
+		totalValueInPence: 0,
 	},
 	addresses: [],
 	deliveryAddress: '',
@@ -94,6 +61,24 @@ export const getAddresses = createSelector(
 export const getDeliveryAddress = createSelector(
 	getCartFeatureState,
 	(state: CartState) => state.deliveryAddress
+);
+
+export const getDeliveryDate = createSelector(
+	getCartFeatureState,
+	(state: CartState) => state.deliveryDate
+);
+
+export const isCartValid = createSelector(
+	getCart,
+	getDeliveryAddress,
+	getDeliveryDate,
+	(cart, deliveryAddress, deliveryDate) => {
+		return (
+			cart.numberOfBerries > 0 &&
+			deliveryAddress !== '' &&
+			deliveryDate > new Date()
+		);
+	}
 );
 
 export const cartReducer = createReducer<CartState>(
@@ -135,6 +120,12 @@ export const cartReducer = createReducer<CartState>(
 		return {
 			...state,
 			deliveryDate,
+		};
+	}),
+	on(resetCart, (state): CartState => {
+		return {
+			...initialState,
+			deliveryAddress: state.deliveryAddress,
 		};
 	})
 );

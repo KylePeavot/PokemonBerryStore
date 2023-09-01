@@ -6,7 +6,7 @@ const routes: Routes = [
 		path: 'berries',
 		loadChildren: () =>
 			import('@pokemon-berry-store/mobile/berries/components').then(
-				(m) => m.BerriesPageModule
+				(m) => m.BerriesModule
 			),
 	},
 	{

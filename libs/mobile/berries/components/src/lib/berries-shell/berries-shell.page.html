@@ -16,3 +16,5 @@
 <ion-footer>
 	<app-checkout-footer *ngIf="cart$ | async as cart" [cart]="cart" />
 </ion-footer>
+
+<app-order-confirmation-toast />

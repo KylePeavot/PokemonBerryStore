@@ -18,6 +18,8 @@ import {
 import { BerryFlavorBarComponent } from './berry-flavor-bar/berry-flavor-bar.component';
 import { CartModule } from '@pokemon-berry-store/mobile/cart/components';
 import { SharedModule } from '@pokemon-berry-store/mobile/shared/components';
+import { OrderConfirmationToastComponent } from './order-confirmation-toast/order-confirmation-toast.component';
+import { OrdersStoreModule } from '@pokemon-berry-store/mobile/orders/state';
 
 @NgModule({
 	imports: [
@@ -25,6 +27,7 @@ import { SharedModule } from '@pokemon-berry-store/mobile/shared/components';
 		FormsModule,
 		IonicModule,
 		BerriesPageRoutingModule,
+		OrdersStoreModule,
 		StoreModule.forFeature('berries', berryReducer),
 		EffectsModule.forFeature([BerryEffects]),
 		CartModule,
@@ -35,6 +38,7 @@ import { SharedModule } from '@pokemon-berry-store/mobile/shared/components';
 		BerryListComponent,
 		BerryFiltersComponent,
 		BerryFlavorBarComponent,
+		OrderConfirmationToastComponent,
 	],
 })
-export class BerriesPageModule {}
+export class BerriesModule {}
