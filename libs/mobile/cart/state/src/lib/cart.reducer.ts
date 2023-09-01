@@ -4,7 +4,12 @@ import {
 	createSelector,
 	on,
 } from '@ngrx/store';
-import { updateQuantityOfBerryInCart } from './cart.actions';
+import {
+	addressSelected,
+	deliveryDateSelected,
+	loadAddressesSuccess,
+	updateQuantityOfBerryInCart,
+} from './cart.actions';
 
 export interface BerryCartItem {
 	id: number;
@@ -22,6 +27,9 @@ export interface Cart {
 
 export interface CartState {
 	cart: Cart;
+	addresses: string[];
+	deliveryAddress: string;
+	deliveryDate: Date;
 }
 
 // TODO: Remove this initial state
@@ -64,6 +72,11 @@ const initialState: CartState = {
 		numberOfBerries: 10,
 		totalValueInPence: 3500,
 	},
+	addresses: [],
+	deliveryAddress: '',
+	deliveryDate: new Date(
+		new Date(new Date().setDate(new Date().getDate() + 2)).setHours(8, 0, 0)
+	),
 };
 
 export const getCartFeatureState = createFeatureSelector<CartState>('cart');
@@ -72,6 +85,17 @@ export const getCart = createSelector(
 	getCartFeatureState,
 	(state: CartState) => state.cart
 );
+
+export const getAddresses = createSelector(
+	getCartFeatureState,
+	(state: CartState) => state.addresses
+);
+
+export const getDeliveryAddress = createSelector(
+	getCartFeatureState,
+	(state: CartState) => state.deliveryAddress
+);
+
 export const cartReducer = createReducer<CartState>(
 	initialState,
 	on(
@@ -94,7 +118,25 @@ export const cartReducer = createReducer<CartState>(
 				},
 			};
 		}
-	)
+	),
+	on(loadAddressesSuccess, (state, { addresses }): CartState => {
+		return {
+			...state,
+			addresses,
+		};
+	}),
+	on(addressSelected, (state, { address }): CartState => {
+		return {
+			...state,
+			deliveryAddress: address,
+		};
+	}),
+	on(deliveryDateSelected, (state, { deliveryDate }): CartState => {
+		return {
+			...state,
+			deliveryDate,
+		};
+	})
 );
 
 const updateBerriesInCart = (

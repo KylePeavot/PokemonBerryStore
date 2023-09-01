@@ -1,0 +1,75 @@
+<ion-card>
+	<ion-card-header>
+		<ion-card-title>Delivery address</ion-card-title>
+	</ion-card-header>
+	<ion-card-content>
+		<ng-container
+			*ngIf="selectedAddress$ | async as selectedAddress; else noAddress"
+		>
+			<ion-item class="ion-no-padding ion-align-items-start" lines="none">
+				<ion-text>
+					Your order will be shipped to <b>{{ selectedAddress }}</b>
+				</ion-text>
+				<ion-button
+					expand="block"
+					fill="clear"
+					(click)="openModal()"
+					slot="end"
+					class="ion-no-margin"
+				>
+					Change
+				</ion-button>
+			</ion-item>
+		</ng-container>
+
+		<ng-template #noAddress>
+			<ion-button expand="block" (click)="openModal()">
+				Search for an address
+			</ion-button>
+		</ng-template>
+
+		<ion-modal
+			*ngIf="isAddressModalOpen$ | async as isAddressModalOpen"
+			[isOpen]="isAddressModalOpen"
+			(didDismiss)="closeModal()"
+		>
+			<ng-template>
+				<ion-header>
+					<ion-toolbar>
+						<ion-buttons slot="start">
+							<ion-button [strong]="true" (click)="closeModal()"
+								>Cancel</ion-button
+							>
+						</ion-buttons>
+						<ion-title>Search for an address</ion-title>
+					</ion-toolbar>
+				</ion-header>
+				<ion-content class="ion-padding">
+					<ion-searchbar
+						(ionInput)="
+							handleSearchTermChange(asInputCustomEvent($event))
+						"
+					/>
+					<!--					TODO: This should use ion-infinite-scroll because there are 850 items in this list -->
+					<ion-list
+						*ngIf="filteredAddresses$ | async as filteredAddresses"
+					>
+						<ion-item *ngFor="let address of filteredAddresses">
+							<ion-button
+								expand="full"
+								fill="clear"
+								size="small"
+								style="width: 100%; height: 100%"
+								(click)="handleAddressSelected(address)"
+							>
+								<ion-text class="ion-text-left">
+									{{ address }}
+								</ion-text>
+							</ion-button>
+						</ion-item>
+					</ion-list>
+				</ion-content>
+			</ng-template>
+		</ion-modal>
+	</ion-card-content>
+</ion-card>

@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cart, getCart } from '@pokemon-berry-store/mobile/cart/state';
+import {
+	CartState,
+	deliveryDateSelected,
+	getAddresses,
+	getCartFeatureState,
+	loadAddresses,
+} from '@pokemon-berry-store/mobile/cart/state';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -8,10 +14,24 @@ import { Store } from '@ngrx/store';
 	templateUrl: 'checkout-shell.page.html',
 	styleUrls: ['checkout-shell.page.scss'],
 })
-export class CheckoutShellPage {
-	cart$: Observable<Cart>;
+export class CheckoutShellPage implements OnInit {
+	cart$: Observable<CartState>;
+	addresses$: Observable<string[] | undefined>;
 
-	constructor(private store: Store) {
-		this.cart$ = this.store.select(getCart);
+	constructor(private store: Store) {}
+
+	ngOnInit() {
+		this.cart$ = this.store.select(getCartFeatureState);
+		this.addresses$ = this.store.select(getAddresses);
+
+		this.store.dispatch(loadAddresses());
+	}
+
+	handleDeliveryDateChange($event: Date) {
+		this.store.dispatch(
+			deliveryDateSelected({
+				deliveryDate: $event,
+			})
+		);
 	}
 }

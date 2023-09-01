@@ -7,7 +7,12 @@ import { CheckoutShellPage } from './checkout-shell/checkout-shell.page';
 import { SharedModule } from '@pokemon-berry-store/mobile/shared/components';
 import { BerryCheckoutSummary } from './berry-checkout-summary/berry-checkout-summary.component';
 import { StoreModule } from '@ngrx/store';
-import { cartReducer } from '@pokemon-berry-store/mobile/cart/state';
+import {
+	CartEffects,
+	cartReducer,
+} from '@pokemon-berry-store/mobile/cart/state';
+import { EffectsModule } from '@ngrx/effects';
+import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 
 @NgModule({
 	imports: [
@@ -17,7 +22,12 @@ import { cartReducer } from '@pokemon-berry-store/mobile/cart/state';
 		SharedModule,
 		CheckoutRoutingModule,
 		StoreModule.forFeature('cart', cartReducer),
+		EffectsModule.forFeature([CartEffects]),
 	],
-	declarations: [CheckoutShellPage, BerryCheckoutSummary],
+	declarations: [
+		CheckoutShellPage,
+		BerryCheckoutSummary,
+		DeliveryAddressComponent,
+	],
 })
 export class CheckoutPageModule {}

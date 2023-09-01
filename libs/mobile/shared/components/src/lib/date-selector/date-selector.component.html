@@ -1,0 +1,19 @@
+<ion-card>
+	<ion-card-header>
+		<ion-card-title>Delivery date</ion-card-title>
+	</ion-card-header>
+	<ion-card-content>
+		<ion-datetime-button datetime="datetime"></ion-datetime-button>
+	</ion-card-content>
+</ion-card>
+
+<ion-modal [keepContentsMounted]="true">
+	<ng-template>
+		<ion-datetime
+			id="datetime"
+			[isDateEnabled]="isDateValid"
+			minuteValues="0,15,30,45"
+			(ionChange)="handleDateTimeChanged(asInputCustomEvent($event))"
+		></ion-datetime>
+	</ng-template>
+</ion-modal>

@@ -1,4 +1,9 @@
-import { Berry, Item, NamedAPIResourceList } from 'pokedex-promise-v2';
+import {
+	Berry,
+	Item,
+	NamedAPIResource,
+	NamedAPIResourceList,
+} from 'pokedex-promise-v2';
 import axios from 'axios';
 
 export class PokeApiDriver {
@@ -24,5 +29,13 @@ export class PokeApiDriver {
 		);
 
 		return response.data;
+	}
+
+	async getLocations(): Promise<NamedAPIResource[]> {
+		const response = await axios.get<NamedAPIResourceList>(
+			`https://pokeapi.co/api/v2/location?limit=1000`
+		);
+
+		return response.data.results;
 	}
 }

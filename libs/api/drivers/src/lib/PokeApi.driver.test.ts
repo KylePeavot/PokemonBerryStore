@@ -71,4 +71,30 @@ describe('PokeApi Driver', () => {
 			).rejects.toThrowError('Request failed with status code 404');
 		});
 	});
+
+	describe('getLocations', () => {
+		it('should return the full (850 items) list of locations', async () => {
+			//When
+			const locations = await pokeApiDriver.getLocations();
+
+			//Then
+			expect(locations).toStrictEqual(
+				expect.arrayContaining([
+					{
+						name: 'canalave-city',
+						url: 'https://pokeapi.co/api/v2/location/1/',
+					},
+					{
+						name: 'eterna-city',
+						url: 'https://pokeapi.co/api/v2/location/2/',
+					},
+					{
+						name: 'pastoria-city',
+						url: 'https://pokeapi.co/api/v2/location/3/',
+					},
+				])
+			);
+			expect(locations.length).toBe(850);
+		});
+	});
 });
