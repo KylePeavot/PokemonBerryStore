@@ -14,13 +14,27 @@ import LocalLocationsList from './localLocationsList.json';
 export class LocationService {
 	constructor(private http: HttpClient) {}
 
-	getAllLocations(): Observable<string[]> {
+	getAllLocations(
+		dataSource: 'api' | 'localFile' = 'localFile'
+	): Observable<string[]> {
+		let dataObservable: Observable<GetLocationsListResponse>;
 
-		return new Observable<GetLocationsListResponse>((observer) => {
-			const response = LocalLocationsList as GetLocationsListResponse;
-			
-			observer.next(response)
-		}).pipe(
+		if (dataSource === 'api') {
+			dataObservable = this.http.get<GetLocationsListResponse>(
+				'http://localhost:3000/locations'
+			);
+		} else {
+			dataObservable = new Observable<GetLocationsListResponse>(
+				(observer) => {
+					const response =
+						LocalLocationsList as GetLocationsListResponse;
+
+					observer.next(response);
+				}
+			);
+		}
+
+		return dataObservable.pipe(
 			map((response) =>
 				response.locationNames.map((name) =>
 					initCapAllWords(removeKebabCase(name))
