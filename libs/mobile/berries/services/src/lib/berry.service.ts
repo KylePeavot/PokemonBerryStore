@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetBerriesListResponse } from '@pokemon-berry-store/shared/request-types';
 import { Berry } from '@pokemon-berry-store/mobile/berries/domain';
+import LocalBerriesList from './localBerriesList.json';
 
 export interface BerryList {
 	berries: Berry[];
@@ -15,9 +16,11 @@ export class BerryService {
 	constructor(private http: HttpClient) {}
 
 	getAllBerries(): Observable<BerryList> {
-		return this.http
-			.get<GetBerriesListResponse>('http://localhost:3000/berries')
-			.pipe(
+		return new Observable<GetBerriesListResponse>((observer) => {
+			const response = LocalBerriesList as GetBerriesListResponse;
+			
+			observer.next(response)
+		}).pipe(
 				map((response) => ({
 					berries: response.berries.map(
 						(berry): Berry =>

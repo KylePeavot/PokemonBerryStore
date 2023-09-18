@@ -10,10 +10,12 @@
 		"importHelpers": true,
 		"target": "es2015",
 		"module": "esnext",
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
 		"lib": ["es2020", "dom"],
 		"skipLibCheck": true,
 		"skipDefaultLibCheck": true,
-		"baseUrl": ".",
+		"baseUrl": ".",	
 		"paths": {
 			"@pokemon-berry-store/api/drivers": [
 				"libs/api/drivers/src/index.ts"
