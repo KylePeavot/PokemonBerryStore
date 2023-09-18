@@ -6,6 +6,7 @@ import {
 	initCapAllWords,
 	removeKebabCase,
 } from '@pokemon-berry-store/mobile/util';
+import LocalLocationsList from './localLocationsList.json';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,24 +14,41 @@ import {
 export class LocationService {
 	constructor(private http: HttpClient) {}
 
-	getAllLocations(): Observable<string[]> {
-		return this.http
-			.get<GetLocationsListResponse>('http://localhost:3000/locations')
-			.pipe(
-				map((response) =>
-					response.locationNames.map((name) =>
-						initCapAllWords(removeKebabCase(name))
-					)
-				),
-				catchError((error) => {
-					console.error({
-						message:
-							'Encountered error in LocationService::getAllLocations',
-						error,
-					});
+	getAllLocations(
+		dataSource: 'api' | 'localFile' = 'localFile'
+	): Observable<string[]> {
+		let dataObservable: Observable<GetLocationsListResponse>;
 
-					return throwError(() => error);
-				})
+		if (dataSource === 'api') {
+			dataObservable = this.http.get<GetLocationsListResponse>(
+				'http://localhost:3000/locations'
 			);
+		} else {
+			dataObservable = new Observable<GetLocationsListResponse>(
+				(observer) => {
+					const response =
+						LocalLocationsList as GetLocationsListResponse;
+
+					observer.next(response);
+				}
+			);
+		}
+
+		return dataObservable.pipe(
+			map((response) =>
+				response.locationNames.map((name) =>
+					initCapAllWords(removeKebabCase(name))
+				)
+			),
+			catchError((error) => {
+				console.error({
+					message:
+						'Encountered error in LocationService::getAllLocations',
+					error,
+				});
+
+				return throwError(() => error);
+			})
+		);
 	}
 }
