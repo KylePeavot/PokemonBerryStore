@@ -17,15 +17,11 @@
 				"tsConfig": "apps/berry-store/tsconfig.app.json",
 				"assets": [
 					"apps/berry-store/src/assets",
+					"apps/berry-store/src/_redirects",
 					{
 						"glob": "**/*.svg",
 						"input": "node_modules/ionicons/dist/ionicons/svg",
 						"output": "./svg"
-					},
-					{
-						"glob": "_redirects",
-						"input": "src",
-						"output": "/"
 					}
 				],
 				"styles": [
